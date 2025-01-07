@@ -4,21 +4,30 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
+    "server": "node src/server/index.js",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^5.7.1",
+    "@prisma/client": "4.16.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.1.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
-    "prisma": "^5.7.1",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.49",
+    "prisma": "4.16.2",
+    "tailwindcss": "^3.4.17",
     "vite": "^6.0.7"
   }
 }

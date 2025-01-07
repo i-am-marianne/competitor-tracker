@@ -8,9 +8,11 @@ datasource db {
 }
 
 model Competitor {
-  id        Int       @id @default(autoincrement())
-  name      String
-  website   String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id              Int      @id @default(autoincrement())
+  name            String
+  logoUrl         String?
+  countryCode     String
+  lastUpdateDate  DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

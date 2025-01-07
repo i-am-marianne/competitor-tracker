@@ -1,15 +1,112 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    padding: 20px;
-  }
-  
-  .App {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+/* Basic styles for layout */
+.header {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.nav {
+  margin-top: 20px;
+}
+
+.nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #666;
+  font-size: 16px;
+}
+
+.nav a:hover {
+  color: #333;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+/* Add these to your existing CSS */
+.competitors-list {
+  margin-top: 20px;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.competitors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.competitor-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.competitor-card:hover {
+  transform: translateY(-2px);
+}
+
+.competitor-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.logo-placeholder {
+  font-size: 24px;
+  color: #666;
+}
+
+.competitor-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.country-flag {
+  margin-bottom: 5px;
+}
+
+.last-update {
+  font-size: 14px;
+  color: #666;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* Update existing competitor-logo class */
+.competitor-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  overflow: hidden; /* This will ensure the image stays within the circular border */
+}
