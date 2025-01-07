@@ -8,11 +8,20 @@ datasource db {
 }
 
 model Competitor {
-  id              Int      @id @default(autoincrement())
-  name            String
-  logoUrl         String?
-  countryCode     String
-  lastUpdateDate  DateTime @default(now())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id             Int      @id @default(autoincrement())
+  name           String
+  logoUrl        String?
+  countryCode    String
+  lastUpdateDate DateTime @default(now())
+  createdAt      DateTime @default(now())
+  sources        Source[]
+}
+
+model Source {
+  id           Int        @id @default(autoincrement())
+  competitorId Int
+  type         String
+  url          String
+  createdAt    DateTime   @default(now())
+  Competitor   Competitor @relation(fields: [competitorId], references: [id])
 }
