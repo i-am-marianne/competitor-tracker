@@ -1,0 +1,593 @@
+<!DOCTYPE html><html dir="ltr" lang="en-GB"><head>
+  <meta charset="utf-8">
+  <!-- v25547 -->
+
+
+  <title>Release Notes - 2024 – Aircall</title>
+
+  
+
+  <link rel="canonical" href="https://support.aircall.io/hc/en-gb/sections/16408014759069-Release-Notes-2024">
+<link rel="alternate" hreflang="en-gb" href="https://support.aircall.io/hc/en-gb/sections/16408014759069-Release-Notes-2024">
+<link rel="alternate" hreflang="x-default" href="https://support.aircall.io/hc/en-gb/sections/16408014759069-Release-Notes-2024">
+
+  <link rel="stylesheet" href="//static.zdassets.com/hc/assets/application-a42a464885a505c24ac3b0ab35047489.css" media="all" id="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/hc/theming_assets/13756412/5262792314269/style.css?digest=24253032724381">
+
+  <link rel="icon" type="image/x-icon" href="/hc/theming_assets/01HZKSQY53ZJS3BBNVZ4WEXTTA">
+
+    
+    
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="google-site-verification" content="X7GNCq8QWvAds03o6wHeWJO7nG7Ls3yqYeF-Xf0kNJs">
+<!-- Jordan Williams -->
+<meta name="google-site-verification" content="fiuKuAmcUSIPByp1UvO-JmNT5aPAgkG1w8BIgNUjlxs">
+ <!-- Jordan Williams end -->
+<!-- Make the translated search clear button label available for use in JS -->
+<!-- See buildClearSearchButton() in script.js -->
+<script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-MQDMMVQ4"></script><script type="text/javascript">window.searchClearButtonLabelLocalized = "Clear search";</script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+<script>
+  
+function shouldShowAi() {
+  const path = window.location.pathname;
+  const currentSeries = '20';
+  const userSeries = localStorage.getItem('series');
+
+	let showAi = false;
+  
+  if(!path.includes('/en-gb')) {
+  	return false
+  }
+  
+  const showAiParam = new URLSearchParams(window.location.search).get('showAi');
+  // `showAi` search param takes precedence over all the logic below
+  if (showAiParam === 'true' || showAiParam === 'false') {
+      showAi = showAiParam === 'true';
+      localStorage.setItem('showAi', showAi);
+      localStorage.setItem('series', currentSeries);
+
+      return showAi;
+  }
+  
+	if(localStorage.getItem('showAi') === 'true' || localStorage.getItem('showAi') === true) {
+  	showAi = true;
+  }
+  
+  const needToReevaluate = userSeries !== currentSeries || localStorage.getItem('showAi') === null;
+  if (needToReevaluate) {
+  	showAi = Math.random() <= 0.50;            
+		localStorage.setItem('series', currentSeries);
+  }
+  
+  localStorage.setItem('showAi', showAi);
+  return showAi
+}
+                                         
+function redirect() {
+  let path = window.location.pathname;
+  let basePath = '/hc/en-gb/p/ai-support/';
+  const searchParams = new URLSearchParams(window.location.search);
+                                  
+  
+  const isMobileDevice = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+  const isBot = /(googlebot|bingbot|yandexbot|slurp|duckduckbot|baiduspider|yahooseeker|facebookexternalhit)/i.test(navigator.userAgent.toLowerCase());
+  if(isMobileDevice || isBot) {
+  	return
+  }
+                                            
+  if(!shouldShowAi()) {
+		if(path.includes('ai-support')) {
+    	window.location.href = '/hc/en-gb';
+		}
+		return
+  }
+                                  
+                                  
+  if (path === basePath || path === `${basePath}/`) {
+    return;
+  }
+
+  if (path.includes('/articles/') || path.includes('/sections/') || path.includes('/categories/')) {
+    const segments = path.split('/');
+    const type = segments[segments.length - 2];
+    const id = segments[segments.length - 1].split('-')[0];
+		window.location.href = `${basePath}#/${type}/${id}`;
+
+  } else if (searchParams.has('query') && path.includes('/ai-support')) {
+    window.location.href = `${basePath}#/search?${searchParams.toString()}`;
+  } else if (path === '/hc/en-gb'){
+    window.location.href = basePath;
+  }
+}
+redirect()
+
+</script>
+  
+</head>
+<body class="">
+  
+  
+  
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MQDMMVQ4');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQDMMVQ4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-navigation" tabindex="1" href="#main-content">Skip to main content</a>
+<header class="header">
+  <!--
+  <div class="top-nav-warning-box">
+    <div class="top-nav-warning-title">Warning - Delivery failure for SMS messages from unregistered US numbers</div>
+    <div class="top-nav-warning-body">From September 1st, 2023, US SMS messages won't be delivered until A2P10DLC registration is completed - <a href="https://support.aircall.io/hc/articles/13147231383965">Read more</a></div>
+	</div> -->
+  <div class="container">
+  <!-- Mattt Jones -->
+  <style>
+    .critical {
+      background-color: #e35f51  !important;
+    	color: #fff !important;
+    }
+    .major {
+      background-color:#e67e22 !important;
+    	color: #fff !important;
+    }
+    .minor {
+      background: #cba40a  !important;
+    	color: #fff !important;
+    }
+    .none {
+      #background: rgba(255, 255, 255, 0.1); !important;
+    	color: #fff !important;
+    }
+    
+    .footer {
+    	border-radius: 0;
+    }
+    
+    .footer-bottom > .container:first-child {
+    	display:none;
+    }
+    
+    .top-nav-warning-box {
+			background-color: #ffcc66;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 1px;
+			text-align: center;
+		}
+    .top-nav-warning-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+    }
+
+    .top-nav-warning-body a {
+    font-size: 20px;
+    color: #1F73B7;
+    font-weight: bold;
+    text-decoration: underline;
+    }
+
+  		.hidden {
+			display: none !important;
+		}
+    
+    
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+      $.getJSON( "https://status.aircall.io/api/v2/summary.json", function( spJson ) {
+             $(".status-btn").addClass(spJson.status.indicator)           
+     });
+    
+     
+  </script>
+  <div class="logo">
+    <a title="Home" href="/hc/en-gb">
+      <img class="whiteLogo" src="/hc/theming_assets/01HZKSQV39SXADZRZ8N6N3WR52" alt="Aircall Help Centre home page">
+    </a>
+    
+  </div>
+  <div class="nav-wrapper-desktop">
+    <nav class="user-nav" id="user-nav">
+      <ul class="user-nav-list">
+        <!--<li></li>-->
+        <li>
+          <a href="https://status.aircall.io/" class="status-btn none" target="_blank">
+            <img src="/hc/theming_assets/01HZKSQXM0SZVAZ3RVPHC0BRAJ">
+            <span>Aircall Status</span>
+          </a>
+        </li>
+        
+        	<li>
+            <a href="https://support.aircall.io/hc/articles/10375394545821" target="_self" class="help-signin-btn">
+            	<img src="/hc/theming_assets/01HZKSQRYC1E7J2Q7ZHXQE2KGS">
+              <span>Help Signing In</span>
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    
+    
+    
+      
+       <a href="https://dashboard.aircall.io/sso/zendesk?return_to=https://support.aircall.io/hc/en-gb/" class="submit-btn">
+          Submit or View Requests
+    		</a>
+      
+    
+    	
+    
+    
+    
+        <div class="dropdown language-selector">
+          <button class="dropdown-toggle" aria-haspopup="true">
+            <span class="language-name curr">EN</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"></path>
+            </svg>
+          </button>
+          <span class="dropdown-menu dropdown-menu-end" role="menu">
+            
+              <a href="/hc/change_language/de?return_to=%2Fhc%2Fde" dir="ltr" rel="nofollow" role="menuitem" class="language-name">
+                Deutsch
+              </a>
+            
+              <a href="/hc/change_language/es-es?return_to=%2Fhc%2Fes-es" dir="ltr" rel="nofollow" role="menuitem" class="language-name">
+                Español
+              </a>
+            
+              <a href="/hc/change_language/fr-fr?return_to=%2Fhc%2Ffr-fr" dir="ltr" rel="nofollow" role="menuitem" class="language-name">
+                Français
+              </a>
+            
+          </span>
+        </div>
+      
+  </div>
+
+  <div class="nav-wrapper-mobile">
+    <button class="menu-button-mobile" aria-controls="user-nav-mobile" aria-expanded="false" aria-label="Toggle navigation menu">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-menu">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M1.5 3.5h13m-13 4h13m-13 4h13"></path>
+      </svg>
+    </button>
+    <nav class="menu-list-mobile" id="user-nav-mobile" aria-expanded="false">
+      <ul class="menu-list-mobile-items">
+        
+          <li class="item">
+            <a role="button" rel="nofollow" data-auth-action="signin" title="Opens a dialogue" href="/hc/en-gb/signin?return_to=https%3A%2F%2Fsupport.aircall.io%2Fhc%2Fen-gb%2Fsections%2F16408014759069-Release-Notes-2024">
+              Sign in
+            </a>
+          </li>
+          <li class="nav-divider"></li>
+        
+        <!--<li class="item"></li>-->
+        <li class="item"><a class="submit-a-request" role="menuitem" href="/hc/en-gb/requests/new">Submit a request</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+  </div>
+</header>
+
+
+  <main role="main">
+    
+<div class="container">
+  <nav class="sub-nav">
+    <ol class="breadcrumbs">
+  
+    <li title="Aircall">
+      
+        <a href="/hc/en-gb">Aircall</a>
+      
+    </li>
+  
+    <li title="Product News &amp; Updates">
+      
+        <a href="/hc/en-gb/categories/10249503285533-Product-News-Updates">Product News &amp; Updates</a>
+      
+    </li>
+  
+    <li title="Release Notes">
+      
+        <a href="/hc/en-gb/sections/10393020321821-Release-Notes">Release Notes</a>
+      
+    </li>
+  
+    <li title="Release Notes - 2024">
+      
+        <a href="/hc/en-gb/sections/16408014759069-Release-Notes-2024">Release Notes - 2024</a>
+      
+    </li>
+  
+</ol>
+
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"></circle>
+        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"></path>
+      </svg>
+      <form role="search" class="search" data-search="" action="/hc/en-gb/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="search" name="query" id="query" placeholder="Search" aria-label="Search"><button type="button" aria-controls="query" class="clear-button"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" role="img" viewBox="0 0 12 12" aria-label="Clear search"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M3 9l6-6m0 6L3 3"></path></svg></button></form>
+    </div>
+  </nav>
+
+  <div class="section-container">
+    <section id="main-content" class="section-content">
+      <header class="page-header">
+        <h1>Release Notes - 2024</h1>
+        
+          <div class="section-subscribe"><div data-helper="subscribe" data-json="{&quot;item&quot;:&quot;section&quot;,&quot;url&quot;:&quot;/hc/en-gb/sections/16408014759069-Release-Notes-2024/subscription.json?to=section&quot;,&quot;follow_label&quot;:&quot;Follow&quot;,&quot;unfollow_label&quot;:&quot;Unfollow&quot;,&quot;following_label&quot;:&quot;Following&quot;,&quot;can_subscribe&quot;:true,&quot;is_subscribed&quot;:false,&quot;options&quot;:[{&quot;label&quot;:&quot;New articles&quot;,&quot;url&quot;:&quot;/hc/en-gb/sections/16408014759069-Release-Notes-2024/subscription.json?subscribe_to_grandchildren=false&quot;,&quot;selected&quot;:false},{&quot;label&quot;:&quot;New articles and comments&quot;,&quot;url&quot;:&quot;/hc/en-gb/sections/16408014759069-Release-Notes-2024/subscription.json?subscribe_to_grandchildren=true&quot;,&quot;selected&quot;:false}]}"></div></div>
+        
+        
+      </header>
+
+      
+
+      
+
+      
+        <ul class="article-list">
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/23433610838429-Release-Notes-December-2024" class="article-list-link">Release Notes - December 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/23433584459805-Release-Notes-November-2024" class="article-list-link">Release Notes - November 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/23433595002525-Release-Notes-October-2024" class="article-list-link">Release Notes - October 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/23433594634269-Release-Notes-September-2024" class="article-list-link">Release Notes - September 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/23433581863581-Release-Notes-August-2024" class="article-list-link">Release Notes - August 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/23433542581917-Release-Notes-July-2024" class="article-list-link">Release Notes - July 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/19447583109149-Release-Notes-June-2024" class="article-list-link">Release Notes - June 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/19094930137245-Release-Notes-May-2024" class="article-list-link">Release Notes - May 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/19094927623581-Release-Notes-April-2024" class="article-list-link">Release Notes - April 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/17797474080029-Release-Notes-March-2024" class="article-list-link">Release Notes - March 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/17153198523549-Release-Notes-February-2024" class="article-list-link">Release Notes - February 2024</a>
+              
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/hc/en-gb/articles/16408408280733-Release-Notes-January-2024" class="article-list-link">Release Notes - January 2024</a>
+              
+            </li>
+          
+        </ul>
+<!-- Jordan is commenting this out
+      
+        <i class="section-empty">
+          <a href=""></a>
+        </i>
+-->
+      
+
+      
+
+    </section>
+  </div>
+</div>
+
+  </main>
+
+  <footer class="footer">
+<!--   <div class="footer-inner">
+    <a title="Home" href="/hc/en-gb">Aircall</a>
+
+    <div class="footer-language-selector">
+      
+        <div class="dropdown language-selector">
+          <button class="dropdown-toggle" aria-haspopup="true">
+            English (GB)
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+            </svg>
+          </button>
+          <span class="dropdown-menu dropdown-menu-end" role="menu">
+            
+              <a href="/hc/change_language/de?return_to=%2Fhc%2Fde" dir="ltr" rel="nofollow" role="menuitem">
+                Deutsch
+              </a>
+            
+              <a href="/hc/change_language/es-es?return_to=%2Fhc%2Fes-es" dir="ltr" rel="nofollow" role="menuitem">
+                Español (España)
+              </a>
+            
+              <a href="/hc/change_language/fr-fr?return_to=%2Fhc%2Ffr-fr" dir="ltr" rel="nofollow" role="menuitem">
+                Français (France)
+              </a>
+            
+          </span>
+        </div>
+      
+    </div>
+  </div> -->
+  
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="left-section">
+        <img src="/hc/theming_assets/01HZKSQSYRQEMGMT5ZHP30F2FP">
+        <p class="tagline">The phone system for the modern business</p>
+        <p>Follow us</p>
+        <div class="social-icons">
+          <a href="https://twitter.com/aircall"><img src="/hc/theming_assets/01HZKSQP78D7P2E5HSR3WA1EY7"></a>
+          <a href="https://www.facebook.com/aircallapp"><img src="/hc/theming_assets/01HZKSQVZ7YKYW3Q7ZNJX3PFEM"></a>
+          <a href="https://www.linkedin.com/company/aircall"><img src="/hc/theming_assets/01HZKSQSPD5FAWPJ3SKMQM4QEK"></a>
+          <!-- social media icons -->
+        </div>
+        <p>Mobile app</p>
+        <div class="dl-icons">
+          <a href="https://apps.apple.com/us/app/aircall/id1021338425"><img src="/hc/theming_assets/01HZKSQXG7ABDRNXS8QNQ5FYVF"></a>
+          <a href="https://play.google.com/store/apps/details?id=com.aircall&amp;hl=en&amp;gl=US&amp;pli=1"><img src="/hc/theming_assets/01HZKSQQTKZ71E6MG6G1A861TY"></a>
+      	</div>
+        
+      </div>
+    
+      <div class="columns">
+        <div>
+          <h3>Why Aircall</h3>
+
+          <a href="https://aircall.io/countries/">Country coverage</a>
+          <a href="https://aircall.io/#:~:text=Apps-,Pricing,-Country%20coverage">Pricing</a>
+          <a href="https://status.aircall.io/">Status</a>
+          <a href="">Developer</a>
+        </div>
+        <div>
+          <h3>Product</h3>
+
+          <a href="https://aircall.io/call-center-software-integrations/">Integrations</a>
+          <a href="">Features</a>
+          <a href="https://aircall.io/#:~:text=Quality%20and%20reliability">Quality and reliability</a>
+          <a href="https://aircall.io/download/">Apps</a>
+          <a href="https://aircall.io/request-a-demo/">Request a demo</a>
+        </div>
+        <div>
+          <h3>Solutions</h3>
+
+          <a href="https://aircall.io/call-center-software/">Call Center</a>
+          <a href="https://aircall.io/inbound-call-center-software/">Support</a>
+          <a href="https://aircall.io/outbound-call-center-software/">Sales</a>
+          <a href="https://aircall.io/business-phone-system/">Phone System</a>
+          <a href="https://aircall.io/solution/industry/retail-ecommerce/">Ecommerce</a>
+          <a href="https://aircall.io/nonprofits/">Non-Profits</a>
+        </div>
+        <div>
+          <h3>Resources</h3>
+
+          <a href="https://aircall.io/blog">Blog</a>
+          <a href="https://help.aircall.io/en/">Knowledge Base</a>
+          <a href="https://aircall.io/customer-stories/">Customer Studies</a>
+          <a href="https://aircall.io/partner-stories/">Partner Stories</a>
+          <a href="https://aircall.io/partners/">Become a partner</a>
+        </div>
+        <div>
+          <h3>Company</h3>
+
+          <a href="https://aircall.io/contact/">Contact Us</a>
+          <a href="https://aircall.io/about-us/">About Us</a>
+          <a href="https://aircall.io/careers/">Careers</a>
+          <a href="https://aircall.io/press-room/">Press</a>
+          <a href="https://brand.aircall.co/">Brand</a>
+        </div>
+      </div>
+    </div>
+    <div class="container bottom-bar">
+      <div>
+        <span class="copyright">© Copyright Aircall</span>
+        <a href="https://aircall.io/privacy/">Privacy</a>
+        <a href="https://aircall.io/terms-of-use/">Terms of use</a>
+        <a href="https://aircall.io/security/">Security</a>
+        <a href="https://aircall.io/privacy-faqs/">Privacy FAQs</a>
+        <a href="https://aircall.io/dpa/">DPA</a>
+        <a href="https://aircall.io/sitemap/">Sitemap</a>
+        
+      </div>
+    </div>
+  </div>
+  
+<script>
+    document.querySelectorAll('.language-name').forEach(el => el.innerHTML = el.innerHTML.replace(/ *\([^)]*\) */g, ""))
+   	document.querySelector('.language-name.curr').innerHTML = document.querySelector('.language-name.curr').innerHTML.substring(0,2).toUpperCase();
+</script> 
+
+
+
+</footer>
+
+
+
+
+  <!-- / -->
+
+  
+  <script src="//static.zdassets.com/hc/assets/en-gb.d0f4744f1a0040b3f57f.js"></script>
+  <script src="https://aircall.zendesk.com/auth/v2/host/without_iframe.js" data-brand-id="5262792314269" data-return-to="https://support.aircall.io/hc/en-gb/sections/16408014759069-Release-Notes-2024" data-theme="hc" data-locale="en-gb" data-auth-origin="5262792314269,true,true"></script>
+
+  <script type="text/javascript">
+  /*
+
+    Greetings sourcecode lurker!
+
+    This is for internal Zendesk and legacy usage,
+    we don't support or guarantee any of these values
+    so please don't build stuff on top of them.
+
+  */
+
+  HelpCenter = {};
+  HelpCenter.account = {"subdomain":"aircall","environment":"production","name":"Aircall"};
+  HelpCenter.user = {"identifier":"da39a3ee5e6b4b0d3255bfef95601890afd80709","email":null,"name":"","role":"anonymous","avatar_url":"https://assets.zendesk.com/hc/assets/default_avatar.png","is_admin":false,"organizations":[],"groups":[]};
+  HelpCenter.internal = {"asset_url":"//static.zdassets.com/hc/assets/","web_widget_asset_composer_url":"https://static.zdassets.com/ekr/snippet.js","current_session":{"locale":"en-gb","csrf_token":null,"shared_csrf_token":null},"usage_tracking":{"event":"section_viewed","data":"BAh7CDoPc2VjdGlvbl9pZGwrCJ0k5EnsDjoLbG9jYWxlSSIKZW4tZ2IGOgZFVDoKX21ldGF7DDoPYWNjb3VudF9pZGkD/OfROhNoZWxwX2NlbnRlcl9pZGwrCB2OaOifBToNYnJhbmRfaWRsKwidzd1WyQQ6DHVzZXJfaWQwOhN1c2VyX3JvbGVfbmFtZUkiDkFOT05ZTU9VUwY7B1Q7BkkiCmVuLWdiBjsHVDoaYW5vbnltb3VzX3RyYWNraW5nX2lkMA==--ac04136cb5608986b0ebe0c3fe6ac50b3e15ce4b","url":"https://support.aircall.io/hc/activity"},"current_record_id":null,"current_record_url":null,"current_record_title":null,"current_text_direction":"ltr","current_brand_id":5262792314269,"current_brand_name":"Aircall","current_brand_url":"https://aircall.zendesk.com","current_brand_active":true,"current_path":"/hc/en-gb/sections/16408014759069-Release-Notes-2024","show_autocomplete_breadcrumbs":true,"user_info_changing_enabled":false,"has_user_profiles_enabled":true,"has_end_user_attachments":true,"user_aliases_enabled":false,"has_anonymous_kb_voting":false,"has_multi_language_help_center":true,"show_at_mentions":true,"embeddables_config":{"embeddables_web_widget":false,"embeddables_connect_ipms":false},"answer_bot_subdomain":"static","general_settings_url":"https://support.aircall.io/hc/admin/general_settings?locale=en-gb","user_segments_url":"https://aircall.zendesk.com/knowledge/user_segments?brand_id=5262792314269","has_gather":true,"has_ckeditor":false,"has_community_enabled":false,"has_community_badges":true,"has_community_post_content_tagging":false,"has_gather_content_tags":true,"has_guide_content_tags":true,"has_user_segments":true,"has_answer_bot_web_form_enabled":false,"has_lookup_fields_in_guide_legacy_templates":true,"has_edit_user_profile_v2":false,"has_garden_modals":false,"theming_cookie_key":"hc-da39a3ee5e6b4b0d3255bfef95601890afd80709-2-preview","is_preview":false,"has_alternate_templates":true,"arrange_articles_url":"https://aircall.zendesk.com/knowledge/arrange?brand_id=5262792314269","article_verification_url":"https://aircall.zendesk.com/knowledge/verification?brand_id=5262792314269","has_article_verification":true,"guide_language_settings_url":"https://support.aircall.io/hc/admin/language_settings?locale=en-gb","docs_importer_url":"https://aircall.zendesk.com/knowledge/import_articles?brand_id=5262792314269","content_tags_url":"https://aircall.zendesk.com/knowledge/content_tags?brand_id=5262792314269","community_badges_url":"https://aircall.zendesk.com/knowledge/community_badges?brand_id=5262792314269","community_settings_url":"https://aircall.zendesk.com/knowledge/community_settings?brand_id=5262792314269","gather_plan_state":"subscribed","search_settings_url":"https://aircall.zendesk.com/knowledge/search_settings?brand_id=5262792314269","has_search_settings_in_plan":true,"theming_api_version":2,"theming_settings":{"brand_color":"#17494D","brand_text_color":"#FFFFFF","text_color":"#2F3941","link_color":"#1F73B7","hover_link_color":"#0F3554","visited_link_color":"#9358B0","background_color":"#FFFFFF","heading_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","text_font":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","logo":"/hc/theming_assets/01HZKSQY0Z8SHH246B3TXXJSPN","show_brand_name":true,"favicon":"/hc/theming_assets/01HZKSQY53ZJS3BBNVZ4WEXTTA","homepage_background_image":"/hc/theming_assets/01HZKSQYB6ZMMHV1PJNHX8JNBJ","community_background_image":"/hc/theming_assets/01HZKSQYGMFQYN1JK323T6EACW","community_image":"/hc/theming_assets/01HZKSQYNFR5GQBDHKS5WSGZ3X","instant_search":true,"scoped_kb_search":false,"scoped_community_search":false,"show_recent_activity":true,"show_articles_in_section":false,"show_article_author":true,"show_article_comments":false,"show_follow_article":false,"show_recently_viewed_articles":true,"show_related_articles":true,"show_article_sharing":true,"show_follow_section":true,"show_follow_post":true,"show_post_sharing":true,"show_follow_topic":false,"request_list_beta":false},"has_pci_credit_card_custom_field":true,"help_center_restricted":false,"is_assuming_someone_else":false,"flash_messages":[],"user_photo_editing_enabled":true,"user_preferred_locale":"en-gb","base_locale":"en-gb","has_end_user_session_renewal":true,"has_user_session_cookie_enabled":false,"has_end_user_2fa":true,"has_custom_statuses_enabled":true,"has_generative_answers_in_help_center":false,"has_hc_generative_answers_setting_enabled":false,"has_intl_date_format_enabled":false,"has_guide_service_catalog":false,"version":"v25547"};
+</script>
+
+  
+  <script src="//static.zdassets.com/hc/assets/hc_enduser-d54b200b7fe7316801bcd65751a0d7fb.js"></script>
+  <script type="text/javascript" src="/hc/theming_assets/13756412/5262792314269/script.js?digest=24253032724381"></script>
+  
+
+</body></html>

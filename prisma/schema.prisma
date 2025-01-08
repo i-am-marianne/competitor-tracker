@@ -14,7 +14,9 @@ model Competitor {
   countryCode    String
   lastUpdateDate DateTime @default(now())
   createdAt      DateTime @default(now())
-  sources        Source[]
+
+  sources      Source[]
+  releaseNotes ReleaseNote[] // Relation with ReleaseNote
 }
 
 model Source {
@@ -24,4 +26,18 @@ model Source {
   url          String
   createdAt    DateTime   @default(now())
   Competitor   Competitor @relation(fields: [competitorId], references: [id])
+}
+
+model ReleaseNote {
+  id           Int      @id @default(autoincrement())
+  competitorId Int
+  date         DateTime
+  title        String
+  details      String
+  url          String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+  Competitor   Competitor @relation(fields: [competitorId], references: [id])
+
+  @@unique([competitorId, date, title]) // Composite unique constraint
 }

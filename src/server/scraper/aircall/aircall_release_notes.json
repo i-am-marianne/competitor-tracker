@@ -1,58 +1,473 @@
 [
   {
     "title": "Release Notes",
-    "url": "https://support.aircall.io/hc/en-gb/sections/10393020321821-Release-Notes"
+    "url": "https://support.aircall.io/hc/en-gb/sections/10393020321821-Release-Notes",
+    "updates": []
   },
   {
     "title": "Release Notes - 2024",
-    "url": "https://support.aircall.io/hc/en-gb/sections/16408014759069-Release-Notes-2024"
+    "url": "https://support.aircall.io/hc/en-gb/sections/16408014759069-Release-Notes-2024",
+    "updates": []
   },
   {
     "title": "Release Notes - December 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/23433610838429-Release-Notes-December-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/23433610838429-Release-Notes-December-2024",
+    "updates": [
+      {
+        "date": "2-December-2024",
+        "update_title": "User Status Panel enhancement",
+        "update_details": "Aircall has introduced an update that allows customers to have the user status panel open while still having full access to their live call list, making the experience of monitoring users' live activity even more seamless."
+      },
+      {
+        "date": "2-December-2024",
+        "update_title": "AI Call Transcript Integration in to Zendesk",
+        "update_details": "Users who have the Aircall AI package will now be able to view AI call transcripts as part of Zendesk internal notes."
+      }
+    ]
   },
   {
     "title": "Release Notes - November 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/23433584459805-Release-Notes-November-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/23433584459805-Release-Notes-November-2024",
+    "updates": [
+      {
+        "date": "18-November-2024",
+        "update_title": "Messaging Public API - Send message within agent conversation",
+        "update_details": "Aircall is allowing users to send SMS via API that will be stored in Aircall and be visible by the agents in all Aircall apps, via a specific endpoint.\n\nAgents will be able to continue the conversation via call or message in the Aircall apps, meaning that the client can combine the use of the API and the Aircall app to converse with its recipients."
+      },
+      {
+        "date": "18-November-2024",
+        "update_title": "Network Diagnostics Dashboard",
+        "update_details": "This dashboard provides comprehensive insights into customers\u2019 network quality and performance, enabling them to proactively identify and address potential issues."
+      },
+      {
+        "date": "18-November-2024",
+        "update_title": "Sentiment analysis in Salesforce integration",
+        "update_details": "Logging sentiment analysis is now available in the Salesforce V3 and V4 integrations, along with the other AI insights that are currently logged."
+      },
+      {
+        "date": "4-November-2024",
+        "update_title": "AI insights available in Mobile",
+        "update_details": "AI insights will now be available in iOS and Android call details."
+      },
+      {
+        "date": "4-November-2024",
+        "update_title": "Inbox UI changes on Mobile apps",
+        "update_details": "The To-do page has moved to an Inbox concept, merging messages and calls. The History page has moved to the top navigation instead of the lower bar."
+      },
+      {
+        "date": "4-November-2024",
+        "update_title": "Working hours in iOS",
+        "update_details": "iOS users now have the ability to set up working hours in their settings."
+      }
+    ]
   },
   {
     "title": "Release Notes - October 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/23433595002525-Release-Notes-October-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/23433595002525-Release-Notes-October-2024",
+    "updates": [
+      {
+        "date": "28-October-2024",
+        "update_title": "New Live Monitoring",
+        "update_details": "Aircall has started the progressive rollout for the new Live Monitoring.\n\nWhat are the main features of Live Monitoring?\n\nLive Monitoring offers the same live call coaching/whispering, live user statuses and live call list you know and love, as well as even more live metrics, instant access to call details, as well as extra filters and data broken down per user (Pro plan) and per number (A+). Analytics+ users also have color-coded SLA thresholds, and can even drill down into live metrics!"
+      },
+      {
+        "date": "28-October-2024",
+        "update_title": "Dashboard Design Revamp - Integration and API Section",
+        "update_details": "We are revamping the designs of the Integration and API section of Dashboard to make it look more user friendly and easy to use. Along with UI changes we are also introducing new features such as Search of Integrations by Name or Custom Name, filter integrations by Category as well as a new section called as \u201cCollections\u201d."
+      },
+      {
+        "date": "28-October-2024",
+        "update_title": "Call scoring",
+        "update_details": "Call Scoring is the newest addition to our Aircall AI add-on, coming to customers in all AI-applicable languages (English, French, Spanish, German, Dutch, and Italian)\n\nCall Scoring allows sales and customer support managers to create custom scorecards that use a mix of AI and human-evaluated criteria to score calls faster and centralize QA processes in the Aircall Dashboard.\n\nCall Scoring also adds a new \"Scorecard\" tab to the Conversation Center of the Dashboard, where managers can see performance metrics across all of the calls they've scored. This helps them quickly pin-point areas for improvement, so they can coach more effectively."
+      },
+      {
+        "date": "28-October-2024",
+        "update_title": "Pipedrive Integration Enhancement - Call Transcription",
+        "update_details": "Aircall is integrating AI Call Transcription into the Pipedrive integration. For any users with the Aircall AI Package enabled, call transcriptions will be added to Pipedrive call records."
+      },
+      {
+        "date": "21-October-2024",
+        "update_title": "Conference functionality",
+        "update_details": "Conference calling is now available to iOS users"
+      },
+      {
+        "date": "21-October-2024",
+        "update_title": "New Webhook Events for Call Summary and Key Topics",
+        "update_details": "Aircall has added 2 new events for AI Entities i.e. Call summary and Key Topics"
+      },
+      {
+        "date": "14-October-2024",
+        "update_title": "MMS in Australia",
+        "update_details": "MMS is now available for AU mobile lines."
+      },
+      {
+        "date": "14-October-2024",
+        "update_title": "Beta launch of SMS in Hubspot workflows",
+        "update_details": "Configure the Aircall Send SMS action to automatically send SMS messages directly from HubSpot workflows, making it easier to engage with your customers based on specific triggers and criteria. This feature is available to all users and offers seamless integration with Aircall for streamlined communication."
+      },
+      {
+        "date": "14-October-2024",
+        "update_title": "Gorgias V2",
+        "update_details": "Missed Call Tagging\n\nNever miss tracking a missed call! Aircall has added automatic \u201cMissed Call\u201d tags to tickets when a call is missed, so you can easily keep track of follow-ups.\n\nPublic Messages in Tickets\n\nAircall has switched from internal notes to public messages. This change ensures that tickets are properly updated and sorted by the most recent message, helping them reappear in your queue when they need attention. This way, nothing slips through the cracks, and your workflow stays efficient!\n\nVoicemail and Call Recording Uploads\n\nAll voicemails and call recordings will now be uploaded directly to Gorgias. You\u2019ll be able to access these files directly from the ticket, keeping all essential information in one place.\n\nSMS and MMS Logging\n\nAircall is making it easier to keep track of customer communications. SMS and MMS messages\u2014both sent and received\u2014will now automatically create or update tickets in Gorgias. Whether it\u2019s an inbound or outbound message, all SMS communications will be logged, and any attachments from MMS messages will be included, ensuring a complete conversation history."
+      }
+    ]
   },
   {
     "title": "Release Notes - September 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/23433594634269-Release-Notes-September-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/23433594634269-Release-Notes-September-2024",
+    "updates": [
+      {
+        "date": "23-September-2024",
+        "update_title": "Email Subscription",
+        "update_details": "Aircall has added a new feature to allow customers/partners to be able to subscribe for email notifications about new API/Webhook Announcements or Changes."
+      },
+      {
+        "date": "16-September-2024",
+        "update_title": "AI add on - API",
+        "update_details": "AI add on users can programmatically query AI transcriptions, summaries, key topics, and sentiment via webhook and REST API"
+      },
+      {
+        "date": "16-September-2024",
+        "update_title": "Drill down into SMS",
+        "update_details": "It is now possible to drill down into the individual SMS and MMS metrics in the overview. dashboard with a simple click on the metric."
+      },
+      {
+        "date": "16-September-2024",
+        "update_title": "Custom insight cards in Salesforce",
+        "update_details": "Now it is possible to customize the information that is shown in insight cards for the Salesforce V3 integration.\n\nAdditionally there\u2019s now case and opportunity insight cards."
+      },
+      {
+        "date": "10-September-2024",
+        "update_title": "Download the RIS information",
+        "update_details": "We have introduced a new feature that allows users to consult and download KYC (Know Your Customer) information submitted by customers during self-service number purchases. This KYC data will be accessible on the number\u2019s detail page within the admin portal and can be viewed or downloaded by users with the appropriate permissions."
+      }
+    ]
   },
   {
     "title": "Release Notes - August 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/23433581863581-Release-Notes-August-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/23433581863581-Release-Notes-August-2024",
+    "updates": [
+      {
+        "date": "26-August-2024",
+        "update_title": "Smartflow Templates",
+        "update_details": "Users with an admin role can use default templates when configuring a number's call distribution for the first time, or while editing an existing configuration, allowing them to quickly setup a call distribution scenario."
+      },
+      {
+        "date": "20-August-2024",
+        "update_title": "Transfer to GSM",
+        "update_details": "Aircall is adding a new feature where you can move your call to the GSM phone network."
+      },
+      {
+        "date": "13-August-2024",
+        "update_title": "Conversation Intelligence - Webhook Event for Sentiment Analysis Released",
+        "update_details": "Aircall has released our very first Webhook event for Conversation Intelligence/Aircall AI i.e. sentiment.created for sentiment analysis."
+      },
+      {
+        "date": "5-August-2024",
+        "update_title": "Trending Topics/Trackers",
+        "update_details": "Admin and manager users can now set up a tracker to identify when important words, phrases, or concepts are mentioned in conversations. They can follow how their topic of interest trends in calls, the sentiment of the calls where these topics appear, and also which agents are most engaged."
+      },
+      {
+        "date": "5-August-2024",
+        "update_title": "AI add on and Transcriptions available in NL and IT",
+        "update_details": "AI transcriptions and AI add on features are available for ducth and italian languages."
+      },
+      {
+        "date": "5-August-2024",
+        "update_title": "Messaging public API - Send Messages",
+        "update_details": "Aircall has introduced new messaging API endpoints to allow users to send messaging via API."
+      }
+    ]
   },
   {
     "title": "Release Notes - July 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/23433542581917-Release-Notes-July-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/23433542581917-Release-Notes-July-2024",
+    "updates": [
+      {
+        "date": "22-July-2024",
+        "update_title": "Analytics - drill down into unanswered calls with no subsequent calls",
+        "update_details": "On the Unanswered Calls+ dashboard, Aircall has added drill down functionality to the metric \u2018calls without a subsequent call\u2019. This enables admins to see a list of all inbound calls that were unanswered, and that did not have a subsequent call with the caller."
+      },
+      {
+        "date": "22-July-2024",
+        "update_title": "Teams filter in Outbound, Outbound+, User Activity, User Activity+ and User Status History+ dashboards",
+        "update_details": "Following the recent changes to the Teams filter to Analytics+ and Call History, Aircall is rolling out the same changes to the Outbound, Outbound+, User Activity, User Activity+, and User Status History+ dashboards."
+      },
+      {
+        "date": "15-July-2024",
+        "update_title": "User Webhook Events Improvement - New Attribute Substatus Added",
+        "update_details": "Users can now use the user.closed event to get the exact substatus or unavailability reason for a user/agent. Please note if a user sets a substatus then it will result in two user.closed events being generated. The 1st one will availability_status = unavailable and substaus = always_closed whereas in 2nd event the substatus will be set to the option chosen by user/agent on Phone App."
+      },
+      {
+        "date": "15-July-2024",
+        "update_title": "Analytics - drill down into not picked up calls",
+        "update_details": "In the Ringing attempts table in the User Activity+ dashboard, admins can now drill down into the three metrics: ringing attempts, picked up, and not picked up. This enables admins to see a list of all calls that were not picked up (etc.) by a single user and the reason why, as well as further details such as the call timeline."
+      },
+      {
+        "date": "8-July-2024",
+        "update_title": "Integration with HubSpot Help Desk",
+        "update_details": "Aircall now allows users leveraging the HubSpot integration to enable Aircall as a calling channel in their HubSpot Help Desk. It will allow users to choose which numbers from Aircall should create tickets in HubSpot Help Desk and let them start a call directly from a ticket thread."
+      },
+      {
+        "date": "8-July-2024",
+        "update_title": "Voicemail Drop for mobile",
+        "update_details": "Voicemail Drop is now available on the Aircall Professional plan for iOS and Android apps."
+      },
+      {
+        "date": "8-July-2024",
+        "update_title": "Total talk time in Monitoring+ in case of external transfers",
+        "update_details": "Aircall is continuing to improve our customers' filtering experience on analytics, with updated changes to the Teams filter on Analytics+ and Call History.\n\nPreviously, the Teams filter on Analytics+ and Call History only filtered by inbound calls routed to the selected team, despite most users wanting it to filter by all calls and activities by members of that team. We\u2019ve addressed this by:\n\nRenaming the Teams filter to Call Routed to Team, displaying all inbound calls routed to that team\nIntroducing a new filter called Users Belonging to Team, which filters by all calls and events by users in the selected team at the time of the call/event"
+      },
+      {
+        "date": "1-July-2024",
+        "update_title": "Improvement in Webhook Integration and Update Webhook API",
+        "update_details": "Aircall has improved the Webhook Integration, as well as Update Webhook API. Below are the changes done:\n\nWebhook Integration- Users can now update the Webhook Integration Name and URL without impacting the selection of events. Earlier if customers has subscribed to few events, on updating the name or url the system used to change the subscription to default value i.e. all events were getting subscribed and customers had to again change the selection to ones required. This will no longer happen and selected events won\u2019t change on updating the Name and URL of Webhook Integration.\nUpdate Webhook API - Earlier it wasn\u2019t possible to add or remove an event to a Webhook without specifying the names of existing events subscribed. The API has been updated to allow customers/partners to update a Webhook integration by adding or removing specific events via the query param. Earlier customer had to specify all event names including existing subscribed event names when they wanted to add or remove an event. It won\u2019t be required any longer, customers can use query param to add or remove specific event (s) from Webhook now. The API documentation has been updated to reflect the changes as well as change log has been updated"
+      },
+      {
+        "date": "1-July-2024",
+        "update_title": "Zendesk Integration - Additional Call Objects",
+        "update_details": "Aircall has released additional \u201cCall Objects\u201d for the Zendesk integration as part of the \"Ticket View\" settings. Below is the List of the additional Call Objects:\n\ndnis call_type\nivr_time_spent\ncall_disposition\ntranscript\nexternal_id\n\nUsers who have the Zendesk integration installed will be able to view the additional call objects in the \u201cTicket view\u201d drop down and can select the required additional call objects that they want to log in to Zendesk. Once selected, Aircall will log these new call objected in Zendesk Tickets."
+      },
+      {
+        "date": "1-July-2024",
+        "update_title": "Voicemail drop",
+        "update_details": "Voicemail drop setup is now available in the Agent's settings. Once at least one message is pre-recorded, agents can submit it to the customer's voicemail after the beep during standard outbound or power-dialer calls."
+      }
+    ]
   },
   {
     "title": "Release Notes - June 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/19447583109149-Release-Notes-June-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/19447583109149-Release-Notes-June-2024",
+    "updates": [
+      {
+        "date": "17-June-2024",
+        "update_title": "SMS for German Mobile lines",
+        "update_details": "All mobile lines in Germany will now become SMS capable without any action from users, both for existing lines and for new mobile lines purchased."
+      },
+      {
+        "date": "10-June-2024",
+        "update_title": "Power Dialer improvements",
+        "update_details": "In addition to being able to add numbers to the Power Dialer via Aircall's Browser Extensions, users are now also able to add numbers directly through the application by importing a CSV or copying and pasting numbers."
+      },
+      {
+        "date": "3-June-2024",
+        "update_title": "Webhook events",
+        "update_details": "Aircall has enhanced the call.ivr_option_selected Webhook event by adding 2 new parameters in it:\n\ntransition_started_at and transition_ended_at, which will give the timestamp when a user/customer started listening to an IVR Option and selected one of the option.\n\nThis will help in calculating the time customers are spending on IVRs."
+      },
+      {
+        "date": "3-June-2024",
+        "update_title": "Exposing Activity of Messaging Usage via Webhook",
+        "update_details": "With this feature release, users can now enable Webhook Integrations to receive real-time updates on messaging activities. The key events included are: message.sent, message.received and message.status_updated. Additionally, with this release, MMS is also now exposed for the US and CA."
+      },
+      {
+        "date": "3-June-2024",
+        "update_title": "Analytics - Changes to the Users, Teams and Tags filters",
+        "update_details": "Aircall is changing the filtering method to rely on the ID rather than the name of the user, tag, or team.\n\nThis allows users to distinguish between different users/tags/teams with the same name when filtering.\n\nAdditionally, Aircall is adding\n\"[Deleted]\" to any deleted users, teams, or tags, as well as displaying deleted items at the end of the drop down list of items to be filtered.\n\nExample: when filtering by the deleted user \"Philippe Kilendo,\" you will see \"[Deleted] Philippe Kilendo [37]\" in the drop down list of users to be filtered."
+      }
+    ]
   },
   {
     "title": "Release Notes - May 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/19094930137245-Release-Notes-May-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/19094930137245-Release-Notes-May-2024",
+    "updates": [
+      {
+        "date": "27-May-2024",
+        "update_title": "Zendesk Call Summary",
+        "update_details": "With the Aircall-Zendesk integration, and Aircall AI, users can log their Call Summaries and Key Topics to their Zendesk tickets."
+      },
+      {
+        "date": "20-May-2024",
+        "update_title": "Exposing Compliance Status Visibility via Endpoint",
+        "update_details": "Aircall users can now effortlessly check the compliance and registration status of their phone numbers using an endpoint, ensuring that their communications adhere to A2P10DLC and toll-free regulations."
+      },
+      {
+        "date": "20-May-2024",
+        "update_title": "Integration with HubSpot Help Desk (Beta)",
+        "update_details": "Help Desk is a new way of viewing HubSpot tickets and interacting with customers in a ticket thread that allows the agent to use several channels and see all the communications logged to that thread. This integration allows users to choose Aircall as the voice provider within Help Desk."
+      },
+      {
+        "date": "20-May-2024",
+        "update_title": "Call summary and key topics logging in Salesforce integration",
+        "update_details": "For users leveraging the AI Add-On and any of our Salesforce integrations, it will be possible for them so see call summary and key topics being logged in Salesforce after a call.\n\nIn the standard Salesforce integration, we are logging these insights in a new object called \u201cAircall AI\u201d with a field for call summary and another one for key topics.\n\nIn the Sales Engagement integration, we will be logging the AI insights in 2 new fields in the Aircall Voice Object."
+      },
+      {
+        "date": "20-May-2024",
+        "update_title": "User Status History+",
+        "update_details": "We are rolling out a new User Activity+ dashboard to Analytics+ users.\n\nUsers will be able to easily export the full history of their users' status history for further analysis in their own workforce management tools, CRMs, or other external tool. This allows them to more easily identify opportunities for improvement and ensure users\u2019 activity aligns with their schedule."
+      },
+      {
+        "date": "6-May-2024",
+        "update_title": "Compliance status visibility for A2P10DLC messaging registration in the US and toll-free messaging registrations in the US & Canada",
+        "update_details": "Users can now seamlessly manage their number statuses through our dashboard, eliminating previous complexities."
+      },
+      {
+        "date": "6-May-2024",
+        "update_title": "Aircall AI - Sentiment Analysis",
+        "update_details": "Sentiment analysis detects a caller's mood in a conversation. It is part of the AI add on package and available to Aircall AI users."
+      }
+    ]
   },
   {
     "title": "Release Notes - April 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/19094927623581-Release-Notes-April-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/19094927623581-Release-Notes-April-2024",
+    "updates": [
+      {
+        "date": "22-April-2024",
+        "update_title": "Log Call Summary and Key Topics in HubSpot",
+        "update_details": "For users leveraging the AI Add-On and HubSpot Integration, when a call summary and key topics are generated for a conversation, that information will be logged in the HubSpot call engagement, allowing users to see call summaries and key topics in HubSpot call records."
+      },
+      {
+        "date": "15-April-2024",
+        "update_title": "Turn Servers in data centers in South Africa, Middle East and Texas (US)",
+        "update_details": "We have recently released TURN servers in data centers located in South Africa, the Middle East, and Texas (US).\n\nThese now show in the Roaming dropdown in Settings->Preferences->Quality"
+      },
+      {
+        "date": "8-April-2024",
+        "update_title": "Aircall AI - Search",
+        "update_details": "Customers who sign up for Aircall AI now gain access to the Search feature within the Conversation Center.\n\nUpon activation, users can utilize the search functionality to search across all their recorded calls.\n\na) Keyword Search: Users can input keywords or phrases into the search bar to initiate a search across all calls that have transcription enabled and generated for their calls. The search results will be returned from the most to the least recent.\n\nb) Advanced Filtering: Users are able to refine their search results by applying filters such as date range, call type, participant names, and by participants who said the word or phrase (agent VS customer)."
+      },
+      {
+        "date": "8-April-2024",
+        "update_title": "Android - Document scanner for MMS",
+        "update_details": "This feature (only for Android) gives users the capability to scan documents with their device\u2019s camera within the app and send it as a PDF file to the recipient."
+      },
+      {
+        "date": "8-April-2024",
+        "update_title": "Analytics - Deleted numbers in the numbers filter",
+        "update_details": "When filtering by Number, now deleted numbers will display as 'Deleted', and are provided only at the end of any list of numbers displayed."
+      },
+      {
+        "date": "2-April-2024",
+        "update_title": "Analytics - Breakdown per IVR Branch",
+        "update_details": "Breakdown by IVR option on Inbound, Inbound+, Monitoring+\n\nWhat's changing?\n\nWe recently added the ability to filter by IVR Branch (i.e. the menu option chosen e.g. 'Key 2: Sales Team') to all analytics dashboards except Outbound, Outbound+, Monitoring+ and Analytics), allowing users to deep dive into inbound activity per IVR option.\n\nWe are now completing this project by breaking down data by IVR Branch within the Inbound, Inbound+ and Monitoring+ dashboards."
+      },
+      {
+        "date": "2-April-2024",
+        "update_title": "Analytics - New filters",
+        "update_details": "What's changing?\n\nWe\u2019re improving the filtering experience on Analytics, beginning with making the date and timezone filters easier to use."
+      },
+      {
+        "date": "2-April-2024",
+        "update_title": "User Activity+ - \"Ringing attempts picked up / Not picked up\"",
+        "update_details": "What's changing?\n\nIn order to minimize the number of missed calls, Sales and Support leaders need to be able to track whether their users are picking up the phone or not. Previously, users were able to track this via the Analytics+ and Monitoring+ dashboards, but not in the newer dashboards released on Analytics+.\n\nFollowing recent improvements to these metrics, we are now providing these in a new table in the User Activity+ dashboard."
+      },
+      {
+        "date": "2-April-2024",
+        "update_title": "Monitoring+ page - Data breakdown default value changed from Hourly to Daily",
+        "update_details": "In order to improve the response time of Analytics, the default value of the filter \"Date Breakdown is now set to \"Daily\" instead of \"Hourly\""
+      }
+    ]
   },
   {
     "title": "Release Notes - March 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/17797474080029-Release-Notes-March-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/17797474080029-Release-Notes-March-2024",
+    "updates": [
+      {
+        "date": "25-March-2024",
+        "update_title": "Task Closing Automation on HubSpot",
+        "update_details": "This feature enables admins to create a rule in the Hubspot integration settings page to determine when a task should be closed in Hubspot. In this rule they can choose a set of default outcomes and a criteria to close a task after a call."
+      },
+      {
+        "date": "25-March-2024",
+        "update_title": "Speakers & Microphone test",
+        "update_details": "Gives the possibility to perform a speaker and microphone \u201cquality check\u201d to make sure devices have good quality, and to prevent audio quality issues during calls."
+      },
+      {
+        "date": "25-March-2024",
+        "update_title": "Salesloft V3",
+        "update_details": "It's our new version of the Salesloft integration. The new version is has exactly the same features as the previous version, but built on our own technology platform."
+      },
+      {
+        "date": "18-March-2024",
+        "update_title": "Breakdown per IVR Branch",
+        "update_details": "We recently added the ability to filter by IVR Branch (i.e. the menu option chosen e.g. 'Key 2: Sales Team') to all analytics dashboards except Outbound, Outbound+, Monitoring+ and Analytics), allowing users to deep dive into inbound activity per IVR option. We are now breaking down data by IVR Branch within the Inbound, Inbound+ and Monitoring+ dashboards."
+      },
+      {
+        "date": "18-March-2024",
+        "update_title": "Outreach V3",
+        "update_details": "It's our new version of the Outreach integration. The new version is has exactly the same features as the previous version, but built on our own technology platform."
+      },
+      {
+        "date": "18-March-2024",
+        "update_title": "MMS - possibility to preview received/sent media in a gallery",
+        "update_details": "We recently added a new MMS option for US and Canada numbers. We now introduce the media gallery, which lets you preview received/sent media without downloading them."
+      },
+      {
+        "date": "11-March-2024",
+        "update_title": "MMS media compression",
+        "update_details": "What's changing? We recently added a new MMS option for US and Canada numbers. Now we are introducing auto-compression of media.\n\nWhat do I need to know? Only JPG/JPEG formats are compatible with compression. Each image is compressed to 60% of its original size, and the maximum output dimension is set at 2048 pixels (width for landscape format and height for portrait format). The compression output and quality depend on several criteria, including the compression parameters, but also on the initial media size and quality, number and type of colors, etc."
+      },
+      {
+        "date": "11-March-2024",
+        "update_title": "Extract Reports",
+        "update_details": "This new feature allows admins and owners to retrieve information about their users, numbers, and teams directly from the dashboard. Please note that the downloaded file will contain all requested data (whether all numbers, all users, or all teams) and will not be filtered."
+      },
+      {
+        "date": "4-March-2024",
+        "update_title": "Call Timeline",
+        "update_details": "Admins and Supervisors are now able to view what happens during the routing of a call from the start until it's answered or missed (IVR, internal transfers, routing to a team/agent, missed reasons, etc). Admins and Supervisors will be able to access any inbound call timeline from the Call History table in the Dashboard (Call Settings > Call History)."
+      },
+      {
+        "date": "4-March-2024",
+        "update_title": "IVR Branch filter - Overview, Analytics+, and Call History",
+        "update_details": "Aircall has added the IVR Branch filter (i.e. the menu option chosen, e.g. 'Key 2: Sales Team') to the Overview, Call History, and Analytics+ dashboards."
+      },
+      {
+        "date": "4-March-2024",
+        "update_title": "New Professional Plan Dashboards",
+        "update_details": "Following a successful beta, we\u2019re now starting the progressive rollout of our four new dashboards for the Professional plan: the Inbound Dashboard, Outbound Dashboard, Unanswered Calls Dashboard, and User Activity Dashboard"
+      }
+    ]
   },
   {
     "title": "Release Notes - February 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/17153198523549-Release-Notes-February-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/17153198523549-Release-Notes-February-2024",
+    "updates": [
+      {
+        "date": "26-February-2024",
+        "update_title": "Zendesk Agent State",
+        "update_details": "Zendesk is launching a new version of their public API named TPE V2, which has allowed Aircall to release a new feature to sync Agent Status in Zendesk and Aircall."
+      },
+      {
+        "date": "19-February-2024",
+        "update_title": "MMS V1 feature - General Availability",
+        "update_details": "Starting on February 21, MMS-V1 functionality will be available on Desktop Phone, iOS, and Android for all eligible customers.\n\nPlease note: MMS is currently available only for numbers in the US and Canada.\n\nWhat's changing? Aircall\u2019s native MMS feature offers an enriched messaging experience with images and files. Additional to the existing SMS options, it allows you to receive and send MMS messages with text or not, preview attachments, and download them."
+      },
+      {
+        "date": "19-February-2024",
+        "update_title": "Renaming of Monitoring page to \"Monitoring +\"",
+        "update_details": "The monitoring page has now been renamed \"Monitoring +\" as it is part of Analytics+ offering. Now all Analytics+ offering pages have the + sign in their name."
+      },
+      {
+        "date": "12-February-2024",
+        "update_title": "Call Notes on the Assets Page",
+        "update_details": "Notes added by agents on a call will now be visible on the Conversation Center Assets Page. The participating agent and admin can create new notes on this page."
+      },
+      {
+        "date": "12-February-2024",
+        "update_title": "Zapier V3",
+        "update_details": "It's our new version of the Zapier integration built on the Aircall Integration Manager (AIM). The new version is has exactly the same features as the previous version, but built on our own technology platform."
+      },
+      {
+        "date": "12-February-2024",
+        "update_title": "IVR Branch filter on goal oriented analytics",
+        "update_details": "What's changing? We have recently added two new fields on the Call History page as well as on the drill-down view (for Analytics+ customers): \"IVR Widget\" (i.e. the name of the IVR menu e.g. 'Main Menu') and \"IVR Branch\" (i.e. the menu option chosen e.g. 'Key 2: Sales Team'). As of today, we're also introducing an IVR Branch filter to the new Analytics+ dashboards (Inbound+, Unanswered Calls+, and User Activity+) as well as the equivalent goal-oriented dashboards on the Professional plan (currently in beta)."
+      },
+      {
+        "date": "12-February-2024",
+        "update_title": "Two Factor Authentication",
+        "update_details": "Aircall is beginning the beta for Two-Factor Authentication (2FA), a mechanism to provide a further layer of protection to the username and password authentication process. When set up, Aircall will require the user to not only enter their password, but also to provide a code (sent to that user\u2019s email address) in order to access the dashboard."
+      },
+      {
+        "date": "5-February-2024",
+        "update_title": "Bulk Users Creation",
+        "update_details": "Aircall is rolling out bulk user creation to all customers. What is bulk user creation? This allows admins and owners the ability to create up to 50 users directly from the dashboard, in a single operation. In a simple four-step process, admins and owners can upload a CSV with their users' information to create all users within that file."
+      }
+    ]
   },
   {
     "title": "Release Notes - January 2024",
-    "url": "https://support.aircall.io/hc/en-gb/articles/16408408280733-Release-Notes-January-2024"
+    "url": "https://support.aircall.io/hc/en-gb/articles/16408408280733-Release-Notes-January-2024",
+    "updates": []
   }
 ]

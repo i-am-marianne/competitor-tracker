@@ -5,6 +5,7 @@ const CompetitorsList = () => {
   const [competitors, setCompetitors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('All'); // State for filter
+  const [error, setError] = useState(null); // State for error handling
   const navigate = useNavigate(); // Navigation hook
 
   useEffect(() => {
@@ -47,32 +48,54 @@ const CompetitorsList = () => {
     return true;
   });
 
+  const runUpdate = async () => {
+    try {
+      const response = await fetch('/api/run-update', { method: 'POST' });
+      const result = await response.json();
+      alert(result.message || 'Update completed!');
+    } catch (error) {
+      alert('Update failed!');
+      console.error('Error:', error);
+    }
+  };
+
   if (loading) {
     return <div>Loading competitors...</div>;
   }
 
   return (
     <div>
-      {/* Filter Tabs */}
-      <div className="filter-tabs">
-        <div
-          className={`filter-tab ${filter === 'All' ? 'active' : ''}`}
-          onClick={() => setFilter('All')}
-        >
-          All
+      {/* Filter Tabs and Run Update Button Container */}
+      <div className="filter-tabs-container">
+        {/* Filter Tabs */}
+        <div className="filter-tabs">
+          <div
+            className={`filter-tab ${filter === 'All' ? 'active' : ''}`}
+            onClick={() => setFilter('All')}
+          >
+            All
+          </div>
+          <div
+            className={`filter-tab ${filter === 'Russian' ? 'active' : ''}`}
+            onClick={() => setFilter('Russian')}
+          >
+            Russian
+          </div>
+          <div
+            className={`filter-tab ${filter === 'Foreign' ? 'active' : ''}`}
+            onClick={() => setFilter('Foreign')}
+          >
+            Foreign
+          </div>
         </div>
-        <div
-          className={`filter-tab ${filter === 'Russian' ? 'active' : ''}`}
-          onClick={() => setFilter('Russian')}
+
+        {/* Run Update Button */}
+        <button
+          onClick={runUpdate}
+          className="run-update-button"
         >
-          Russian
-        </div>
-        <div
-          className={`filter-tab ${filter === 'Foreign' ? 'active' : ''}`}
-          onClick={() => setFilter('Foreign')}
-        >
-          Foreign
-        </div>
+          Run Update
+        </button>
       </div>
 
       {/* Competitor Cards */}

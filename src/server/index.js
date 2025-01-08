@@ -6,6 +6,8 @@ const prisma = new PrismaClient();
 const app = express();
 const port = 3000;  // Changed from 5000 to 3000
 
+const { exec } = require('child_process');
+
 app.use(cors());
 app.use(express.json());
 
@@ -51,7 +53,40 @@ app.get('/api/competitors/:id/sources', async (req, res) => {
   }
 });
 
+// Trigger scraper and database update
+app.post('/api/run-update', async (req, res) => {
+  try {
+    console.log('Running scraper and update...');
 
+    // Execute the scraper
+    exec('python3 src/server/scraper/aircall/aircall_scraper.py', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Scraper error: ${error.message}`);
+        return res.status(500).json({ error: 'Scraper failed.' });
+      }
+      if (stderr) console.error(`Scraper stderr: ${stderr}`);
+
+      console.log(`Scraper Output: ${stdout}`);
+
+      // Execute database insertion
+      exec('node scripts/insertReleaseNotes.js', (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Insertion error: ${error.message}`);
+          return res.status(500).json({ error: 'Insertion failed.' });
+        }
+        if (stderr) console.error(`Insertion stderr: ${stderr}`);
+
+        console.log(`Insertion Output: ${stdout}`);
+        res.status(200).json({ message: 'Update successful!' });
+      });
+    });
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    res.status(500).json({ error: 'Unexpected error.' });
+  }
+});
+
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
