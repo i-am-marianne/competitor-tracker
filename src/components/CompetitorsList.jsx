@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUpdateStatus } from '../contexts/UpdateStatusContext'; // Import update status context
 
 const CompetitorsList = () => {
   const [competitors, setCompetitors] = useState([]);
@@ -7,6 +8,7 @@ const CompetitorsList = () => {
   const [filter, setFilter] = useState('All'); // State for filter
   const [error, setError] = useState(null); // State for error handling
   const navigate = useNavigate(); // Navigation hook
+  const { startUpdate, completeUpdate, failUpdate } = useUpdateStatus(); // Use context
 
   useEffect(() => {
     const fetchCompetitors = async () => {
@@ -23,7 +25,7 @@ const CompetitorsList = () => {
         setLoading(false);
       }
     };
-  
+
     fetchCompetitors();
   }, []);
 
@@ -49,12 +51,18 @@ const CompetitorsList = () => {
   });
 
   const runUpdate = async () => {
+    const estimatedTime = new Date(Date.now() + 60000).toLocaleTimeString(); // 1-minute estimate
+    startUpdate(estimatedTime); // Start the update with estimated time
     try {
-      const response = await fetch('/api/run-update', { method: 'POST' });
+      const response = await fetch('http://localhost:3000/api/run-update', { method: 'POST' });
       const result = await response.json();
-      alert(result.message || 'Update completed!');
+      if (response.ok) {
+        completeUpdate();
+      } else {
+        failUpdate(result.error);
+      }
     } catch (error) {
-      alert('Update failed!');
+      failUpdate('Update failed!');
       console.error('Error:', error);
     }
   };

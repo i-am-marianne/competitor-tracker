@@ -40,6 +40,7 @@ app.get('/api/competitors/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch competitor' });
   }
 });
+
 app.get('/api/competitors/:id/sources', async (req, res) => {
   const { id } = req.params; // Get competitor ID from URL
   try {
@@ -62,9 +63,8 @@ app.post('/api/run-update', async (req, res) => {
     exec('python3 src/server/scraper/aircall/aircall_scraper.py', (error, stdout, stderr) => {
       if (error) {
         console.error(`Scraper error: ${error.message}`);
-        return res.status(500).json({ error: 'Scraper failed.' });
+        return res.status(500).json({ error: `Scraper failed: ${stderr || error.message}` });
       }
-      if (stderr) console.error(`Scraper stderr: ${stderr}`);
 
       console.log(`Scraper Output: ${stdout}`);
 
@@ -72,9 +72,8 @@ app.post('/api/run-update', async (req, res) => {
       exec('node scripts/insertReleaseNotes.js', (error, stdout, stderr) => {
         if (error) {
           console.error(`Insertion error: ${error.message}`);
-          return res.status(500).json({ error: 'Insertion failed.' });
+          return res.status(500).json({ error: `Insertion failed: ${stderr || error.message}` });
         }
-        if (stderr) console.error(`Insertion stderr: ${stderr}`);
 
         console.log(`Insertion Output: ${stdout}`);
         res.status(200).json({ message: 'Update successful!' });
@@ -82,7 +81,7 @@ app.post('/api/run-update', async (req, res) => {
     });
   } catch (err) {
     console.error('Unexpected error:', err);
-    res.status(500).json({ error: 'Unexpected error.' });
+    res.status(500).json({ error: 'Unexpected error occurred during the update process.' });
   }
 });
 
