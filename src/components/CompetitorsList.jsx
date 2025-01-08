@@ -11,15 +11,18 @@ const CompetitorsList = () => {
     const fetchCompetitors = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/competitors');
+        if (!response.ok) throw new Error('Failed to fetch competitors');
         const data = await response.json();
         setCompetitors(data);
+        setError(null); // Clear any previous errors
       } catch (error) {
+        setError(error.message);
         console.error('Error fetching competitors:', error);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchCompetitors();
   }, []);
 
