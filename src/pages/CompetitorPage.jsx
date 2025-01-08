@@ -1,54 +1,89 @@
+// CompetitorPage.jsx
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import "../styles/CompetitorPage.css"; // Import the new CSS file
 
 const CompetitorPage = () => {
-  const { id } = useParams(); // Get competitor ID from URL
-  const navigate = useNavigate(); // Hook for navigation
-  const [competitor, setCompetitor] = useState(null); // State for competitor data
-  const [loading, setLoading] = useState(true);
+  const [competitor, setCompetitor] = useState(null);
+  const [lastReleaseNote, setLastReleaseNote] = useState(null);
+  const [releaseSources, setReleaseSources] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCompetitor = async () => {
+    // Fetch competitor details, release sources, and last release note
+    const fetchCompetitorDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/competitors/${id}`);
-        const data = await response.json();
-        setCompetitor(data);
+        const competitorResponse = await fetch('http://localhost:3000/api/competitors/1'); // Replace with actual ID
+        const competitorData = await competitorResponse.json();
+        setCompetitor(competitorData);
+
+        const releaseSourcesResponse = await fetch(`http://localhost:3000/api/competitors/${competitorData.id}/sources`);
+        const releaseSourcesData = await releaseSourcesResponse.json();
+        setReleaseSources(releaseSourcesData);
+
+        const lastReleaseNoteResponse = await fetch(`http://localhost:3000/api/competitors/${competitorData.id}/last-release-note`);
+        const lastReleaseNoteData = await lastReleaseNoteResponse.json();
+        setLastReleaseNote(lastReleaseNoteData);
       } catch (error) {
-        console.error('Error fetching competitor:', error);
-      } finally {
-        setLoading(false);
+        console.error('Error fetching competitor details:', error);
       }
     };
 
-    fetchCompetitor();
-  }, [id]);
+    fetchCompetitorDetails();
+  }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const getCountryFlag = (countryCode) => {
+    const codePoints = countryCode
+      .toUpperCase()
+      .split('')
+      .map(char => 127397 + char.charCodeAt());
+    return String.fromCodePoint(...codePoints);
+  };
 
-  if (!competitor) {
-    return <div>Competitor not found.</div>;
-  }
+  if (!competitor) return <div>Loading...</div>;
 
   return (
-    <div className="main-content">
-      <div className="competitor-header" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        {/* Back Button */}
-        <button 
-          className="back-button" 
-          onClick={() => navigate('/competitors')} // Navigate back to list
-        >
-          <span className="material-symbols-outlined">arrow_back</span>
-        </button>
-
-        {/* Competitor Name */}
-        <h1 className="competitor-name" style={{ margin: '0', fontSize: '24px', fontWeight: '600', lineHeight: '1' }}>
-          {competitor.name}
-        </h1>
+    <div className="competitor-page">
+      {/* Back Button */}
+      <div className="back-button" onClick={() => navigate('/')}>
+        <span className="material-symbols-outlined">arrow_back</span>
       </div>
 
-      <p>Details about this competitor will go here.</p>
+      {/* Top Row */}
+      <div className="top-row">
+        {/* General Info Block */}
+        <div className="general-info-block">
+          <div className="competitor-info">
+            <div className="competitor-logo">
+              <img src={competitor.logoUrl} alt={`${competitor.name} logo`} className="logo-image" />
+            </div>
+            <div className="competitor-name">{competitor.name}</div>
+          </div>
+          <div className="release-sources">
+            <h4>Release sources</h4>
+            <div className="source-icons">
+              {releaseSources.map((source, index) => (
+                <img key={index} src={source.iconUrl} alt={source.type} className="source-icon" />
+              ))}
+            </div>
+          </div>
+          <div className="last-release-note">
+            <h4>Last release note</h4>
+            <p>{lastReleaseNote ? lastReleaseNote.date : 'No release notes available'}</p>
+          </div>
+        </div>
+
+        {/* Empty Blocks (for now) */}
+        <div className="empty-block"></div>
+        <div className="empty-block"></div>
+      </div>
+
+      {/* Bottom Row - Full width block for Release Notes */}
+      <div className="release-notes-block">
+        <h3>Release notes</h3>
+        {/* Placeholder for now */}
+        <p>Release notes will appear here...</p>
+      </div>
     </div>
   );
 };
