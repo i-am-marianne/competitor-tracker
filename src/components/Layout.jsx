@@ -9,7 +9,7 @@ const Layout = () => {
       {/* Header */}
       <header className="header">
         <div>
-          <h1>Competitor Tracker</h1>
+          <h1>Peek-a-Feature</h1>
           {/* Navigation */}
           <nav className="nav">
             <NavLink 

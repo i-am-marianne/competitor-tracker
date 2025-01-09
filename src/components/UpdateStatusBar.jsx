@@ -12,7 +12,7 @@ const UpdateStatusBar = () => {
       <div className="status-message">
         {status.message}
         {status.estimatedTime && (
-          <span> - Estimated completion: {status.estimatedTime}</span>
+          <span> <br></br>Will be completed around: {status.estimatedTime}</span>
         )}
       </div>
       <button className="hide-button" onClick={hideStatus}>
