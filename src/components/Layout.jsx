@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { UpdateStatusProvider } from '../contexts/UpdateStatusContext'; // Import the provider
-import UpdateStatusBar from './UpdateStatusBar'; // Import status bar component
+import UpdateStatusBar from './UpdateStatusBar'; // Ensure it's imported correctly
 
 const Layout = () => {
   return (
@@ -32,6 +32,9 @@ const Layout = () => {
       <main className="main-content">
         <Outlet />
       </main>
+
+      {/* Floating Update Status Widget - Now at the bottom */}
+      <UpdateStatusBar /> {/* Display the status widget on every page */}
     </div>
   );
 };

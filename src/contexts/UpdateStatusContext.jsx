@@ -1,59 +1,66 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
-// Create the context
+// Create context
 const UpdateStatusContext = createContext();
 
-// Custom hook for using the context
-export const useUpdateStatus = () => useContext(UpdateStatusContext);
+export const useUpdateStatus = () => {
+  return useContext(UpdateStatusContext); // Use context to get the status
+};
 
 // Provider component
 export const UpdateStatusProvider = ({ children }) => {
   const [status, setStatus] = useState({
-    isUpdating: false,
-    message: '',
-    error: null,
+    message: "",
+    isUpdating: false,  // Ensure `isUpdating` is part of the status object
     estimatedTime: null,
+    error: false,
   });
 
   const startUpdate = (estimatedTime) => {
     setStatus({
-      isUpdating: true,
-      message: 'Update in progress...',
-      error: null,
+      message: "Updating...",
+      isUpdating: true,  // Set `isUpdating` to true when update starts
       estimatedTime,
+      error: false,
     });
   };
 
   const completeUpdate = () => {
     setStatus({
-      isUpdating: false,
-      message: 'Update completed successfully!',
-      error: null,
+      message: "Update completed!",
+      isUpdating: false,  // Set `isUpdating` to false when update completes
       estimatedTime: null,
+      error: false,
     });
   };
 
-  const failUpdate = (error) => {
+  const failUpdate = (errorMessage) => {
     setStatus({
-      isUpdating: false,
-      message: 'Update failed.',
-      error: error || 'Unknown error',
+      message: errorMessage,
+      isUpdating: false,  // Set `isUpdating` to false if update fails
       estimatedTime: null,
+      error: true,
     });
   };
 
   const hideStatus = () => {
     setStatus({
-      isUpdating: false,
-      message: '',
-      error: null,
+      message: "",
+      isUpdating: false,  // Reset status
       estimatedTime: null,
+      error: false,
     });
   };
 
   return (
     <UpdateStatusContext.Provider
-      value={{ status, startUpdate, completeUpdate, failUpdate, hideStatus }}
+      value={{
+        status,  // Provide the `status` object, including `isUpdating`
+        startUpdate,
+        completeUpdate,
+        failUpdate,
+        hideStatus,
+      }}
     >
       {children}
     </UpdateStatusContext.Provider>

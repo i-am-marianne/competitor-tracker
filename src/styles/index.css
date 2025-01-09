@@ -111,6 +111,7 @@ h2 {
   transform: scale(0.98); /* Slight scale effect on click */
 }
 
+/* Disabled Button Styles */
 .run-update-button:disabled {
   background-color: #d6d6d6; /* Light gray background */
   cursor: not-allowed; /* Change cursor to indicate disabled state */

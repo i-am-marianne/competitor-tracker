@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUpdateStatus } from '../contexts/UpdateStatusContext'; // Import update status context
+import { useUpdateStatus } from '../contexts/UpdateStatusContext'; // Use the update status context
 
 const CompetitorsList = () => {
   const [competitors, setCompetitors] = useState([]);
@@ -8,7 +8,10 @@ const CompetitorsList = () => {
   const [filter, setFilter] = useState('All'); // State for filter
   const [error, setError] = useState(null); // State for error handling
   const navigate = useNavigate(); // Navigation hook
-  const { startUpdate, completeUpdate, failUpdate } = useUpdateStatus(); // Use context
+  const { status, startUpdate, completeUpdate, failUpdate } = useUpdateStatus(); // Access status and functions
+
+  // Access `isUpdating` correctly from the context
+  const { isUpdating } = status; // Destructure `isUpdating` from status object
 
   useEffect(() => {
     const fetchCompetitors = async () => {
@@ -25,7 +28,7 @@ const CompetitorsList = () => {
         setLoading(false);
       }
     };
-
+  
     fetchCompetitors();
   }, []);
 
@@ -51,21 +54,24 @@ const CompetitorsList = () => {
   });
 
   const runUpdate = async () => {
-    const estimatedTime = new Date(Date.now() + 60000).toLocaleTimeString(); // 1-minute estimate
-    startUpdate(estimatedTime); // Start the update with estimated time
     try {
+      const estimatedTime = new Date(Date.now() + 60000).toLocaleTimeString(); // 1-minute estimate
+      startUpdate(estimatedTime); // Start the update with estimated time
       const response = await fetch('http://localhost:3000/api/run-update', { method: 'POST' });
       const result = await response.json();
       if (response.ok) {
-        completeUpdate();
+        completeUpdate(); // Update complete
       } else {
-        failUpdate(result.error);
+        failUpdate(result.error); // Update failed
       }
     } catch (error) {
       failUpdate('Update failed!');
       console.error('Error:', error);
     }
   };
+
+  // Debugging the button's disabled state
+  console.log('isUpdating:', isUpdating);
 
   if (loading) {
     return <div>Loading competitors...</div>;
@@ -101,8 +107,9 @@ const CompetitorsList = () => {
         <button
           onClick={runUpdate}
           className="run-update-button"
+          disabled={isUpdating} // Disable button when updating
         >
-          Run Update
+          {isUpdating ? 'Updating...' : 'Run Update'}
         </button>
       </div>
 

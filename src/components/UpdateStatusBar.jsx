@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUpdateStatus } from '../contexts/UpdateStatusContext'; // Use the context
+import { useUpdateStatus } from '../contexts/UpdateStatusContext'; // Use the update status context
 import '../styles/UpdateStatusBar.css'; // Import the updated CSS
 
 const UpdateStatusBar = () => {
@@ -12,7 +12,7 @@ const UpdateStatusBar = () => {
       <div className="status-message">
         {status.message}
         {status.estimatedTime && (
-          <span> <br></br> Will be completed around {status.estimatedTime}</span>
+          <span> - Estimated completion: {status.estimatedTime}</span>
         )}
       </div>
       <button className="hide-button" onClick={hideStatus}>
@@ -22,4 +22,4 @@ const UpdateStatusBar = () => {
   );
 };
 
-export default UpdateStatusBar;
+export default UpdateStatusBar;  // Ensure the default export
