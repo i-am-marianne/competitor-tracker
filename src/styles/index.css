@@ -12,6 +12,15 @@ body {
   flex-direction: column;
 }
 
+/* Main content container */
+.main-content {
+  flex: 1;
+  max-width: 1300px; /* Constrain the content */
+  margin: 0 auto; /* Center the content */
+  padding: 20px;
+  background-color: transparent; /* No additional background */
+}
+
 /* Basic styles for layout */
 .header {
   background: linear-gradient(to right, #C6D5EB, #E7EDD5); /* Match body background */
@@ -29,17 +38,12 @@ body {
   margin-top: 20px;
 }
 
-.main-content {
-  flex: 1; /* Allows it to expand and push the footer down */
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: transparent; /* No additional background */
-}
-
-/* Competitors List */
+/* Competitors List Layout */
 .competitors-list {
   margin-top: 20px;
+  max-width: 1300px; /* Constrain width */
+  margin: 0 auto; /* Center the content */
+  padding: 20px;
 }
 
 h2 {
@@ -50,9 +54,11 @@ h2 {
 /* Filter Tabs Container */
 .filter-tabs-container {
   display: flex;
-  justify-content: space-between; /* Distribute space between items */
+  justify-content: space-between; /* Align tabs to the left or center */
+  gap: 20px; /* Space between filter tabs */
   align-items: center; /* Vertically align items */
-  margin-bottom: 20px;
+  max-width: 1300px; /* Constrain width */
+  margin: 0 auto 20px auto; /* Center the container and add margin at the bottom */
 }
 
 /* Filter Tabs */
@@ -105,13 +111,23 @@ h2 {
   transform: scale(0.98); /* Slight scale effect on click */
 }
 
+.run-update-button:disabled {
+  background-color: #d6d6d6; /* Light gray background */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+  opacity: 0.6; /* Make it visually appear disabled */
+  pointer-events: none; /* Ensure it doesn't trigger clicks when disabled */
+}
+
 /* Competitor Cards */
 .competitors-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ensure cards are responsive */
   gap: 20px;
   padding: 20px;
+  max-width: 1300px; /* Ensure the grid doesn't stretch too wide */
+  margin: 0 auto; /* Center the grid */
 }
+
 
 .competitor-card {
   position: relative; /* Allow absolute positioning for date */
@@ -276,3 +292,4 @@ h2 {
   margin: 0; /* Remove extra margins causing misalignment */
   line-height: 1; /* Ensure consistent vertical alignment */
 }
+
