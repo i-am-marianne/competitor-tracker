@@ -23,18 +23,18 @@
 
 .timeline-item {
     display: flex;
-    gap: 20px;
+    gap: 0px;
     position: relative;
     padding: 10px 0;
-    min-height: 60px; /* Ensure consistent height */
+    min-height: 60px;
 }
 
 .timeline-item:not(:last-child)::after {
     content: '';
     position: absolute;
-    left: 75px; /* Move line more to the right */
-    top: 50px; /* Start closer to the date */
-    height: calc(100% - 25px); /* Adjust height to connect dots better */
+    left: 75px;
+    top: 50px;
+    height: calc(100% - 25px);
     width: 1px;
     background-color: #A9A9A9;
 }
@@ -44,7 +44,7 @@
     font-size: 14px;
     color: #666;
     position: relative;
-    padding-left: 35px; /* Adjust padding to match line position */
+    padding-left: 35px;
 }
 
 .timeline-content {
@@ -54,15 +54,54 @@
     padding: 10px;
 }
 
-.timeline-content h5 {
+/* Note Container Styles */
+.note-container {
+    margin-bottom: 15px;
+}
+
+.note-container:last-child {
+    margin-bottom: 0;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.note-header h5 {
     margin: 0;
     font-size: 16px;
     font-weight: 600;
+    flex: 1;
 }
 
 .timeline-content p {
     font-size: 14px;
     color: #333;
+    margin: 8px 0;
+}
+
+/* Tags styling */
+.release-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-left: 15px;
+    min-width: 120px;
+}
+
+.release-tag {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+    white-space: nowrap;
 }
 
 /* Add media queries for responsiveness */
@@ -81,5 +120,15 @@
 
     .timeline-content {
         width: 100%;
+    }
+
+    .note-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .release-tags {
+        margin-left: 0;
+        justify-content: flex-start;
     }
 }
