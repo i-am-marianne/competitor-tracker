@@ -6,74 +6,80 @@
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 15px;
     padding: 20px;
-  }
-  
-  .release-notes-block h3 {
+}
+
+.release-notes-block h3 {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
-  }
-  
-  /* Timeline Styles */
-  .timeline {
+}
+
+/* Timeline Styles */
+.timeline {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-  }
-  
-  .timeline-item {
+    gap: 10px;
+}
+
+.timeline-item {
     display: flex;
     gap: 20px;
-  }
-  
-  .timeline-date {
+    position: relative;
+    padding: 10px 0;
+    min-height: 60px; /* Ensure consistent height */
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 75px; /* Move line more to the right */
+    top: 50px; /* Start closer to the date */
+    height: calc(100% - 25px); /* Adjust height to connect dots better */
+    width: 1px;
+    background-color: #A9A9A9;
+}
+
+.timeline-date {
     width: 150px;
     font-size: 14px;
     color: #666;
-  }
-  
-  .timeline-content {
+    position: relative;
+    padding-left: 35px; /* Adjust padding to match line position */
+}
+
+.timeline-content {
     flex: 1;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
     padding: 10px;
-  }
-  
-  .timeline-content h5 {
+}
+
+.timeline-content h5 {
     margin: 0;
     font-size: 16px;
     font-weight: 600;
-  }
-  
-  .timeline-content p {
+}
+
+.timeline-content p {
     font-size: 14px;
     color: #333;
-  }
-  
-  /* Styling for 'No release notes available' text */
-  .no-release-text {
-    font-size: 14px;
-    color: #666;
-    font-weight: 300;
-  }
-  
-  /* Add media queries for responsiveness */
-  @media (max-width: 768px) {
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
     .release-notes-block {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     .timeline-item {
-      flex-direction: column; /* Stack the timeline items vertically on smaller screens */
+        flex-direction: column;
     }
-  
+
     .timeline-date {
-      width: 100%; /* Make the date take full width on smaller screens */
-      text-align: center; /* Center align the date */
+        width: 100%;
     }
-  
+
     .timeline-content {
-      width: 100%; /* Make the content take full width on smaller screens */
+        width: 100%;
     }
-  }
-  
+}

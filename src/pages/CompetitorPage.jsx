@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTelegram } from '@fortawesome/free-brands-svg-icons'; // Import Telegram from brands
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'; // Import Globe from solid icons
-import "../styles/CompetitorPage.css"; // Import the general CSS file
+import "../styles/CompetitorPage.css"; // Import the new CSS file
 import "../styles/ReleaseNotesTimeline.css"; // Import the new CSS for Release Notes
 
 // Mapping of source types to Font Awesome icons
@@ -52,24 +52,33 @@ const CompetitorPage = () => {
     fetchCompetitorDetails();
   }, [id]);
 
-  const getCountryFlag = (countryCode) => {
-    const codePoints = countryCode
-      .toUpperCase()
-      .split('')
-      .map(char => 127397 + char.charCodeAt());
-    return String.fromCodePoint(...codePoints);
-  };
-
-  // Format the date to '1 Dec 2024'
+  // Function to format date
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'short', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-GB', options); // Format the date
+    return new Date(dateString).toLocaleDateString('en-GB', options);
   };
+
+  // Function to group release notes by date
+  const groupReleaseNotesByDate = (releaseNotes) => {
+    const groupedNotes = releaseNotes.reduce((groups, note) => {
+      const date = formatDate(note.date);
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(note);
+      return groups;
+    }, {});
+
+    return groupedNotes;
+  };
+
+  // Group the release notes by date
+  const groupedReleaseNotes = groupReleaseNotesByDate(releaseNotes);
 
   if (!competitor) return <div>Loading...</div>;
 
   return (
-    <div className="competitor-page">
+    <div className="competitor-page" style={{ paddingBottom: '60px' }}> {/* Add padding for floating widget */}
       {/* Back Button */}
       <div className="back-button" onClick={() => navigate('/')}>
         <span className="material-symbols-outlined">arrow_back</span>
@@ -121,17 +130,21 @@ const CompetitorPage = () => {
       {/* Bottom Row - Full width block for Release Notes */}
       <div className="release-notes-block">
         <h3>Release notes</h3>
-        {/* Display the release notes in a vertical timeline */}
-        {releaseNotes.length > 0 ? (
+        {/* Display the grouped release notes in a vertical timeline */}
+        {Object.keys(groupedReleaseNotes).length > 0 ? (
           <div className="timeline">
-            {releaseNotes.map((note, index) => (
+            {Object.keys(groupedReleaseNotes).map((date, index) => (
               <div key={index} className="timeline-item">
                 <div className="timeline-date">
-                  <p>{formatDate(note.date)}</p>
+                  <p>{date}</p>
                 </div>
                 <div className="timeline-content">
-                  <h5>{note.title}</h5>
-                  <p>{note.details}</p>
+                  {groupedReleaseNotes[date].map((note, noteIndex) => (
+                    <div key={noteIndex}>
+                      <h5>{note.title}</h5>
+                      <p>{note.details}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
