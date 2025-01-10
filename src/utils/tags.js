@@ -8,11 +8,11 @@ const tags = {
     "Call Routing": ["Call Distribution", "Routing", "Smartflow", "IVR Branch", "Transfer"],
     Analytics: ["Analytics", "Dashboard", "Report", "Metrics", "Drill Down"],
     Monitoring: ["Monitoring", "Live", "Status Panel"],
-    "New Features": ["New", "Addition", "Introducing", "Beta"],
+    "New Features": ["New", "Addition", "Introducing", "Beta", "Launch"],
     Security: ["Authentication", "Security", "Compliance", "Two-Factor", "Audit"],
     IVR: ["IVR", "Interactive Voice Response", "Key Option", "Menu"],
     Omnichannel: ["SMS", "MMS", "Messaging", "WhatsApp", "Omnichannel"],
-    "Call history": ["call history", "call log", "call timeline", "call details"],
+    "Call History": ["Call History", "Call Log", "Call Timeline", "Call Details"],
   };
   
   export default tags;

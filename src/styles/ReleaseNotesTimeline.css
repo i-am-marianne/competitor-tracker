@@ -1,134 +1,181 @@
 /* ReleaseNotesTimeline.css */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
 
 /* Bottom Row - Full width block for Release Notes */
 .release-notes-block {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 15px;
-    padding: 20px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .release-notes-block h3 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* Timeline Styles */
 .timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .timeline-item {
-    display: flex;
-    gap: 0px;
-    position: relative;
-    padding: 10px 0;
-    min-height: 60px;
+  display: flex;
+  gap: 0px;
+  position: relative;
+  padding: 10px 0;
+  min-height: 60px;
 }
 
 .timeline-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 75px;
-    top: 50px;
-    height: calc(100% - 25px);
-    width: 1px;
-    background-color: #A9A9A9;
+  content: "";
+  position: absolute;
+  left: 75px;
+  top: 50px;
+  height: calc(100% - 25px);
+  width: 1px;
+  background-color: #a9a9a9;
 }
 
 .timeline-date {
-    width: 150px;
-    font-size: 14px;
-    color: #666;
-    position: relative;
-    padding-left: 35px;
+  width: 120px;
+  font-size: 14px;
+  color: #666;
+  position: relative;
+  padding-left: 35px;
 }
 
 .timeline-content {
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 8px;
-    padding: 10px;
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 10px;
 }
 
 /* Note Container Styles */
 .note-container {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .note-container:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .note-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
 }
 
 .note-header h5 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    flex: 1;
+  padding-top: 10px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  flex: 1;
 }
 
 .timeline-content p {
-    font-size: 14px;
-    color: #333;
-    margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+  margin: 8px 0;
 }
 
 /* Tags styling */
 .release-tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    margin-left: 15px;
-    min-width: 120px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-left: 15px;
+  min-width: 120px;
 }
 
 .release-tag {
-    background-color: #f1f1f1;
-    color: #333;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: capitalize;
-    white-space: nowrap;
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+/* Filter Tabs Container */
+.filter-tabs-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto 20px auto;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 15px;
+}
+
+.filter-tab {
+  font-family: "Montserrat", sans-serif;
+  width: 100px !important; /* Add !important */
+  height: 32px !important; /* Add !important */
+  font-size: 12px !important;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-tab.active {
+  background-color: black;
+  color: white;
+}
+
+.filter-tab:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
 }
 
 /* Add media queries for responsiveness */
 @media (max-width: 768px) {
-    .release-notes-block {
-        padding: 10px;
-    }
+  .release-notes-block {
+    padding: 10px;
+  }
 
-    .timeline-item {
-        flex-direction: column;
-    }
+  .timeline-item {
+    flex-direction: column;
+  }
 
-    .timeline-date {
-        width: 100%;
-    }
+  .timeline-date {
+    width: 100%;
+  }
 
-    .timeline-content {
-        width: 100%;
-    }
+  .timeline-content {
+    width: 100%;
+  }
 
-    .note-header {
-        flex-direction: column;
-        gap: 8px;
-    }
+  .note-header {
+    flex-direction: column;
+    gap: 8px;
+  }
 
-    .release-tags {
-        margin-left: 0;
-        justify-content: flex-start;
-    }
+  .release-tags {
+    margin-left: 0;
+    justify-content: flex-start;
+  }
 }

@@ -1,27 +1,72 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTelegram } from "@fortawesome/free-brands-svg-icons"; // Import Telegram from brands
-import { faGlobe } from "@fortawesome/free-solid-svg-icons"; // Import Globe from solid icons
-import "../styles/CompetitorPage.css"; // Import the new CSS file
-import "../styles/ReleaseNotesTimeline.css"; // Import the new CSS for Release Notes
-import tags from "../utils/tags"; // Import the tags.js file
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import "../styles/CompetitorPage.css";
+import "../styles/ReleaseNotesTimeline.css";
+import tags from "../utils/tags";
 
-// Mapping of source types to Font Awesome icons
 const sourceIconMap = {
-  website: faGlobe, // FontAwesome Globe Icon for Website
-  telegram: faTelegram, // FontAwesome Telegram Icon
-  other: "https://example.com/icons/default-icon.png", // Fallback for unknown types
+  website: faGlobe,
+  telegram: faTelegram,
+  other: "https://example.com/icons/default-icon.png",
 };
 
 const CompetitorPage = () => {
+  // States
   const [competitor, setCompetitor] = useState(null);
   const [releaseSources, setReleaseSources] = useState([]);
-  const [releaseNotes, setReleaseNotes] = useState([]); // New state for release notes
+  const [releaseNotes, setReleaseNotes] = useState([]);
   const [latestReleaseNoteDate, setLatestReleaseNoteDate] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
+  const [selectedTags, setSelectedTags] = useState(["All"]);
+  const availableTags = ["All", ...Object.keys(tags)];
 
+  // Utility functions
+  const formatDate = (dateString) => {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    return new Date(dateString).toLocaleDateString("en-GB", options);
+  };
+
+  const addTagsToReleaseNote = (note) => {
+    const tagsList = [];
+    for (const [tag, keywords] of Object.entries(tags)) {
+      const regex = new RegExp(keywords.join("|"), "i");
+      if (regex.test(note.title) || regex.test(note.details)) {
+        tagsList.push(tag);
+      }
+    }
+    return tagsList;
+  };
+
+  const filterReleaseNotesByTags = (notes) => {
+    if (selectedTags.includes('All')) {
+      return notes;
+    }
+    return notes.filter(note => {
+      const noteTags = addTagsToReleaseNote(note);
+      return selectedTags.some(selectedTag => noteTags.includes(selectedTag));
+    });
+  };
+
+  const groupReleaseNotesByDate = (releaseNotes) => {
+    const groupedNotes = releaseNotes.reduce((groups, note) => {
+      const date = formatDate(note.date);
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(note);
+      return groups;
+    }, {});
+    return groupedNotes;
+  };
+
+  // Process notes
+  const groupedReleaseNotes = groupReleaseNotesByDate(filterReleaseNotesByTags(releaseNotes));
+
+  // Effects
   useEffect(() => {
     const fetchCompetitorDetails = async () => {
       try {
@@ -59,59 +104,17 @@ const CompetitorPage = () => {
     fetchCompetitorDetails();
   }, [id]);
 
-  // Function to format date
-  const formatDate = (dateString) => {
-    const options = { day: "numeric", month: "short", year: "numeric" };
-    return new Date(dateString).toLocaleDateString("en-GB", options);
-  };
-
-  // Function to group release notes by date
-  const groupReleaseNotesByDate = (releaseNotes) => {
-    const groupedNotes = releaseNotes.reduce((groups, note) => {
-      const date = formatDate(note.date);
-      if (!groups[date]) {
-        groups[date] = [];
-      }
-      groups[date].push(note);
-      return groups;
-    }, {});
-
-    return groupedNotes;
-  };
-
-  // Group the release notes by date
-  const groupedReleaseNotes = groupReleaseNotesByDate(releaseNotes);
-
-  // Function to add tags based on the keywords in the release note's title/details
-  const addTagsToReleaseNote = (note) => {
-    const tagsList = [];
-
-    // Loop through each tag category and check if any keyword matches the title or details
-    for (const [tag, keywords] of Object.entries(tags)) {
-      const regex = new RegExp(keywords.join("|"), "i"); // Create a case-insensitive regex from the keywords
-
-      // If a keyword match is found in title or details, add the tag to the tagsList
-      if (regex.test(note.title) || regex.test(note.details)) {
-        tagsList.push(tag);
-      }
-    }
-
-    return tagsList;
-  };
-
   if (!competitor) return <div>Loading...</div>;
 
   return (
     <div className="competitor-page" style={{ paddingBottom: "60px" }}>
-      {" "}
-      {/* Add padding for floating widget */}
       {/* Back Button */}
       <div className="back-button" onClick={() => navigate("/")}>
         <span className="material-symbols-outlined">arrow_back</span>
       </div>
+
       {/* Top Row */}
       <div className="top-row">
-        {/* General Info Block */}
         <div className="general-info-block">
           <div className="competitor-info">
             <div className="competitor-logo">
@@ -128,8 +131,7 @@ const CompetitorPage = () => {
             {releaseSources.length > 0 ? (
               <div className="source-icons">
                 {releaseSources.map((source, index) => {
-                  const icon =
-                    sourceIconMap[source.type] || sourceIconMap.other;
+                  const icon = sourceIconMap[source.type] || sourceIconMap.other;
                   return (
                     <div key={index} className="source-icon-container">
                       <a
@@ -144,10 +146,7 @@ const CompetitorPage = () => {
                             className="source-icon"
                           />
                         ) : (
-                          <FontAwesomeIcon
-                            icon={icon}
-                            className="source-icon"
-                          />
+                          <FontAwesomeIcon icon={icon} className="source-icon" />
                         )}
                       </a>
                     </div>
@@ -171,10 +170,38 @@ const CompetitorPage = () => {
         <div className="empty-block"></div>
         <div className="empty-block"></div>
       </div>
-      {/* Bottom Row - Full width block for Release Notes */}
+
       <div className="release-notes-block">
         <h3>Release notes</h3>
-        {/* Display the grouped release notes in a vertical timeline */}
+        <div className="filter-tabs-container">
+          <div className="filter-tabs">
+            {availableTags.map((tag) => (
+              <button
+                key={tag}
+                className={`filter-tab ${
+                  selectedTags.includes(tag) ? "active" : ""
+                }`}
+                onClick={() => {
+                  if (tag === "All") {
+                    setSelectedTags(["All"]);
+                  } else {
+                    const newSelectedTags = selectedTags.includes("All")
+                      ? [tag]
+                      : selectedTags.includes(tag)
+                      ? selectedTags.filter((t) => t !== tag)
+                      : [...selectedTags, tag];
+                    setSelectedTags(
+                      newSelectedTags.length ? newSelectedTags : ["All"]
+                    );
+                  }
+                }}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {Object.keys(groupedReleaseNotes).length > 0 ? (
           <div className="timeline">
             {Object.keys(groupedReleaseNotes).map((date, index) => (
@@ -182,8 +209,7 @@ const CompetitorPage = () => {
                 <div className="timeline-date">
                   <p>{date}</p>
                 </div>
-                <div className="timeline-line"></div>{" "}
-                {/* Add the vertical line */}
+                <div className="timeline-line"></div>
                 <div className="timeline-content">
                   {groupedReleaseNotes[date].map((note, noteIndex) => {
                     const tagsForNote = addTagsToReleaseNote(note);
