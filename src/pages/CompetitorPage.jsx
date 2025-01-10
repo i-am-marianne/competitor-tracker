@@ -14,8 +14,8 @@ const sourceIconMap = {
 
 const CompetitorPage = () => {
   const [competitor, setCompetitor] = useState(null);
-  const [lastReleaseNote, setLastReleaseNote] = useState(null);
   const [releaseSources, setReleaseSources] = useState([]);
+  const [latestReleaseNoteDate, setLatestReleaseNoteDate] = useState(null); // New state for the latest release note date
   const navigate = useNavigate();
   const { id } = useParams();  // Get the competitor ID from the URL
 
@@ -30,9 +30,19 @@ const CompetitorPage = () => {
         const releaseSourcesData = await releaseSourcesResponse.json();
         setReleaseSources(releaseSourcesData);
 
-        const lastReleaseNoteResponse = await fetch(`http://localhost:3000/api/competitors/${competitorData.id}/last-release-note`);
-        const lastReleaseNoteData = await lastReleaseNoteResponse.json();
-        setLastReleaseNote(lastReleaseNoteData);
+        // Fetch the release notes for the competitor
+        const releaseNotesResponse = await fetch(`http://localhost:3000/api/competitors/${competitorData.id}/release-notes`);
+        const releaseNotesData = await releaseNotesResponse.json();
+
+        // If release notes exist, find the latest release note date
+        if (releaseNotesData && releaseNotesData.length > 0) {
+          const latestRelease = releaseNotesData.reduce((latest, note) => {
+            return new Date(note.date) > new Date(latest.date) ? note : latest;
+          });
+          setLatestReleaseNoteDate(latestRelease.date);  // Set the latest date
+        } else {
+          setLatestReleaseNoteDate(null);  // No release notes available
+        }
       } catch (error) {
         console.error('Error fetching competitor details:', error);
       }
@@ -47,6 +57,12 @@ const CompetitorPage = () => {
       .split('')
       .map(char => 127397 + char.charCodeAt());
     return String.fromCodePoint(...codePoints);
+  };
+
+  // Format the date to '1 Dec 2024'
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-GB', options); // Format the date
   };
 
   if (!competitor) return <div>Loading...</div>;
@@ -70,28 +86,33 @@ const CompetitorPage = () => {
           </div>
           <div className="release-sources">
             <h4>Release sources</h4>
-            <div className="source-icons">
-              {releaseSources.map((source, index) => {
-                // Use the source type to get the correct icon
-                const icon = sourceIconMap[source.type] || sourceIconMap.other; // Fallback if type is not found
-                return (
-                  <div key={index} className="source-icon-container">
-                    {/* Make the icon clickable, using the URL from the source */}
-                    <a href={source.url} target="_blank" rel="noopener noreferrer">
-                      {typeof icon === "string" ? (
-                        <img src={icon} alt={source.type} className="source-icon" />
-                      ) : (
-                        <FontAwesomeIcon icon={icon} className="source-icon" />
-                      )}
-                    </a>
-                  </div>
-                );
-              })}
-            </div>
+            {/* Check if there are release sources */}
+            {releaseSources.length > 0 ? (
+              <div className="source-icons">
+                {releaseSources.map((source, index) => {
+                  // Get the icon and URL based on the source type
+                  const icon = sourceIconMap[source.type] || sourceIconMap.other; // Fallback if type is not found
+                  return (
+                    <div key={index} className="source-icon-container">
+                      {/* Make the icon clickable, using the URL from the source */}
+                      <a href={source.url} target="_blank" rel="noopener noreferrer">
+                        {typeof icon === "string" ? (
+                          <img src={icon} alt={source.type} className="source-icon" />
+                        ) : (
+                          <FontAwesomeIcon icon={icon} className="source-icon" />
+                        )}
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="no-release-text">No release sources available</p> 
+            )}
           </div>
           <div className="last-release-note">
             <h4>Last release note</h4>
-            <p>{lastReleaseNote ? lastReleaseNote.date : 'No release notes available'}</p>
+            <p>{latestReleaseNoteDate ? formatDate(latestReleaseNoteDate) : 'No release notes available'}</p>
           </div>
         </div>
 

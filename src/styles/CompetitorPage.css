@@ -132,17 +132,24 @@
   font-weight: 600;
 }
 
+/* Style for 'No release sources available' and 'No release notes available' text */
+.no-release-text {
+  font-size: 14px;
+  color: #666;
+  font-weight: 300;
+}
+
 /* Add media queries for responsiveness */
 @media (max-width: 768px) {
   .general-info-block {
-      flex: 1 1 100%; /* Take full width on smaller screens */
+    flex: 1 1 100%; /* Take full width on smaller screens */
   }
 
   .empty-block {
-      flex: 1 1 100%; /* Take full width on smaller screens */
+    flex: 1 1 100%; /* Take full width on smaller screens */
   }
 
   .top-row {
-      flex-direction: column; /* Stack the top row elements vertically */
+    flex-direction: column; /* Stack the top row elements vertically */
   }
 }

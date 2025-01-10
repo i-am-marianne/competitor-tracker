@@ -54,6 +54,34 @@ app.get('/api/competitors/:id/sources', async (req, res) => {
   }
 });
 
+// Fetch release notes
+
+app.get('/api/competitors/:id/release-notes', async (req, res) => {
+  const { id } = req.params;
+  try {
+    // Fetch release notes for the given competitor ID
+    const releaseNotes = await prisma.releaseNote.findMany({
+      where: {
+        competitorId: parseInt(id), // Ensure the ID is an integer
+      },
+      orderBy: {
+        date: 'desc', // Sort by date to get the latest release first
+      },
+    });
+
+    if (!releaseNotes || releaseNotes.length === 0) {
+      return res.status(404).json({ message: 'No release notes found for this competitor' });
+    }
+
+    // Return the release notes
+    res.json(releaseNotes);
+  } catch (error) {
+    console.error('Error fetching release notes:', error);
+    res.status(500).json({ error: 'Failed to fetch release notes' });
+  }
+});
+
+
 // Trigger scraper and database update
 app.post('/api/run-update', async (req, res) => {
   try {
@@ -84,6 +112,7 @@ app.post('/api/run-update', async (req, res) => {
     res.status(500).json({ error: 'Unexpected error occurred during the update process.' });
   }
 });
+
 
 // Start the server
 app.listen(port, () => {
