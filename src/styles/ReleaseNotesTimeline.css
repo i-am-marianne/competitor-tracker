@@ -1,0 +1,79 @@
+/* ReleaseNotesTimeline.css */
+
+/* Bottom Row - Full width block for Release Notes */
+.release-notes-block {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 20px;
+  }
+  
+  .release-notes-block h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  /* Timeline Styles */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .timeline-date {
+    width: 150px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .timeline-content {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .timeline-content h5 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .timeline-content p {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Styling for 'No release notes available' text */
+  .no-release-text {
+    font-size: 14px;
+    color: #666;
+    font-weight: 300;
+  }
+  
+  /* Add media queries for responsiveness */
+  @media (max-width: 768px) {
+    .release-notes-block {
+      padding: 10px;
+    }
+  
+    .timeline-item {
+      flex-direction: column; /* Stack the timeline items vertically on smaller screens */
+    }
+  
+    .timeline-date {
+      width: 100%; /* Make the date take full width on smaller screens */
+      text-align: center; /* Center align the date */
+    }
+  
+    .timeline-content {
+      width: 100%; /* Make the content take full width on smaller screens */
+    }
+  }
+  

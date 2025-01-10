@@ -3,7 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTelegram } from '@fortawesome/free-brands-svg-icons'; // Import Telegram from brands
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'; // Import Globe from solid icons
-import "../styles/CompetitorPage.css"; // Import the new CSS file
+import "../styles/CompetitorPage.css"; // Import the general CSS file
+import "../styles/ReleaseNotesTimeline.css"; // Import the new CSS for Release Notes
 
 // Mapping of source types to Font Awesome icons
 const sourceIconMap = {
@@ -15,14 +16,15 @@ const sourceIconMap = {
 const CompetitorPage = () => {
   const [competitor, setCompetitor] = useState(null);
   const [releaseSources, setReleaseSources] = useState([]);
-  const [latestReleaseNoteDate, setLatestReleaseNoteDate] = useState(null); // New state for the latest release note date
+  const [releaseNotes, setReleaseNotes] = useState([]); // New state for release notes
+  const [latestReleaseNoteDate, setLatestReleaseNoteDate] = useState(null);
   const navigate = useNavigate();
-  const { id } = useParams();  // Get the competitor ID from the URL
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchCompetitorDetails = async () => {
       try {
-        const competitorResponse = await fetch(`http://localhost:3000/api/competitors/${id}`); // Use the dynamic ID
+        const competitorResponse = await fetch(`http://localhost:3000/api/competitors/${id}`);
         const competitorData = await competitorResponse.json();
         setCompetitor(competitorData);
 
@@ -30,18 +32,17 @@ const CompetitorPage = () => {
         const releaseSourcesData = await releaseSourcesResponse.json();
         setReleaseSources(releaseSourcesData);
 
-        // Fetch the release notes for the competitor
         const releaseNotesResponse = await fetch(`http://localhost:3000/api/competitors/${competitorData.id}/release-notes`);
         const releaseNotesData = await releaseNotesResponse.json();
+        setReleaseNotes(releaseNotesData);
 
-        // If release notes exist, find the latest release note date
         if (releaseNotesData && releaseNotesData.length > 0) {
           const latestRelease = releaseNotesData.reduce((latest, note) => {
             return new Date(note.date) > new Date(latest.date) ? note : latest;
           });
-          setLatestReleaseNoteDate(latestRelease.date);  // Set the latest date
+          setLatestReleaseNoteDate(latestRelease.date);
         } else {
-          setLatestReleaseNoteDate(null);  // No release notes available
+          setLatestReleaseNoteDate(null);
         }
       } catch (error) {
         console.error('Error fetching competitor details:', error);
@@ -49,7 +50,7 @@ const CompetitorPage = () => {
     };
 
     fetchCompetitorDetails();
-  }, [id]);  // The effect runs again if `id` changes
+  }, [id]);
 
   const getCountryFlag = (countryCode) => {
     const codePoints = countryCode
@@ -68,7 +69,7 @@ const CompetitorPage = () => {
   if (!competitor) return <div>Loading...</div>;
 
   return (
-    <div className="competitor-page" style={{ paddingBottom: '60px' }}> {/* Add padding for floating widget */}
+    <div className="competitor-page">
       {/* Back Button */}
       <div className="back-button" onClick={() => navigate('/')}>
         <span className="material-symbols-outlined">arrow_back</span>
@@ -86,15 +87,12 @@ const CompetitorPage = () => {
           </div>
           <div className="release-sources">
             <h4>Release sources</h4>
-            {/* Check if there are release sources */}
             {releaseSources.length > 0 ? (
               <div className="source-icons">
                 {releaseSources.map((source, index) => {
-                  // Get the icon and URL based on the source type
-                  const icon = sourceIconMap[source.type] || sourceIconMap.other; // Fallback if type is not found
+                  const icon = sourceIconMap[source.type] || sourceIconMap.other;
                   return (
                     <div key={index} className="source-icon-container">
-                      {/* Make the icon clickable, using the URL from the source */}
                       <a href={source.url} target="_blank" rel="noopener noreferrer">
                         {typeof icon === "string" ? (
                           <img src={icon} alt={source.type} className="source-icon" />
@@ -107,7 +105,7 @@ const CompetitorPage = () => {
                 })}
               </div>
             ) : (
-              <p className="no-release-text">No release sources available</p> 
+              <p className="no-release-text">No release sources available</p>
             )}
           </div>
           <div className="last-release-note">
@@ -116,7 +114,6 @@ const CompetitorPage = () => {
           </div>
         </div>
 
-        {/* Empty Blocks (for now) */}
         <div className="empty-block"></div>
         <div className="empty-block"></div>
       </div>
@@ -124,8 +121,24 @@ const CompetitorPage = () => {
       {/* Bottom Row - Full width block for Release Notes */}
       <div className="release-notes-block">
         <h3>Release notes</h3>
-        {/* Placeholder for now */}
-        <p>Release notes will appear here...</p>
+        {/* Display the release notes in a vertical timeline */}
+        {releaseNotes.length > 0 ? (
+          <div className="timeline">
+            {releaseNotes.map((note, index) => (
+              <div key={index} className="timeline-item">
+                <div className="timeline-date">
+                  <p>{formatDate(note.date)}</p>
+                </div>
+                <div className="timeline-content">
+                  <h5>{note.title}</h5>
+                  <p>{note.details}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No release notes available</p>
+        )}
       </div>
     </div>
   );
