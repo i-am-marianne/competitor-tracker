@@ -1,19 +1,28 @@
-// CompetitorPage.jsx
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTelegram } from '@fortawesome/free-brands-svg-icons'; // Import Telegram from brands
+import { faGlobe } from '@fortawesome/free-solid-svg-icons'; // Import Globe from solid icons
 import "../styles/CompetitorPage.css"; // Import the new CSS file
+
+// Mapping of source types to Font Awesome icons
+const sourceIconMap = {
+  website: faGlobe,  // FontAwesome Globe Icon for Website
+  telegram: faTelegram,  // FontAwesome Telegram Icon
+  other: "https://example.com/icons/default-icon.png", // Fallback for unknown types
+};
 
 const CompetitorPage = () => {
   const [competitor, setCompetitor] = useState(null);
   const [lastReleaseNote, setLastReleaseNote] = useState(null);
   const [releaseSources, setReleaseSources] = useState([]);
   const navigate = useNavigate();
+  const { id } = useParams();  // Get the competitor ID from the URL
 
   useEffect(() => {
-    // Fetch competitor details, release sources, and last release note
     const fetchCompetitorDetails = async () => {
       try {
-        const competitorResponse = await fetch('http://localhost:3000/api/competitors/1'); // Replace with actual ID
+        const competitorResponse = await fetch(`http://localhost:3000/api/competitors/${id}`); // Use the dynamic ID
         const competitorData = await competitorResponse.json();
         setCompetitor(competitorData);
 
@@ -30,7 +39,7 @@ const CompetitorPage = () => {
     };
 
     fetchCompetitorDetails();
-  }, []);
+  }, [id]);  // The effect runs again if `id` changes
 
   const getCountryFlag = (countryCode) => {
     const codePoints = countryCode
@@ -43,7 +52,7 @@ const CompetitorPage = () => {
   if (!competitor) return <div>Loading...</div>;
 
   return (
-    <div className="competitor-page">
+    <div className="competitor-page" style={{ paddingBottom: '60px' }}> {/* Add padding for floating widget */}
       {/* Back Button */}
       <div className="back-button" onClick={() => navigate('/')}>
         <span className="material-symbols-outlined">arrow_back</span>
@@ -62,9 +71,22 @@ const CompetitorPage = () => {
           <div className="release-sources">
             <h4>Release sources</h4>
             <div className="source-icons">
-              {releaseSources.map((source, index) => (
-                <img key={index} src={source.iconUrl} alt={source.type} className="source-icon" />
-              ))}
+              {releaseSources.map((source, index) => {
+                // Use the source type to get the correct icon
+                const icon = sourceIconMap[source.type] || sourceIconMap.other; // Fallback if type is not found
+                return (
+                  <div key={index} className="source-icon-container">
+                    {/* Make the icon clickable, using the URL from the source */}
+                    <a href={source.url} target="_blank" rel="noopener noreferrer">
+                      {typeof icon === "string" ? (
+                        <img src={icon} alt={source.type} className="source-icon" />
+                      ) : (
+                        <FontAwesomeIcon icon={icon} className="source-icon" />
+                      )}
+                    </a>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="last-release-note">

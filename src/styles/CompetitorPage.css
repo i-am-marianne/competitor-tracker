@@ -2,122 +2,147 @@
 
 /* Competitor Page Layout */
 .competitor-page {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 20px;
-    max-width: 1300px; /* Make sure it's not too wide */
-    margin: 0 auto; /* Center the content */
-  }
-  
-  /* Back Button - Positioned outside the blocks, to the left */
-  .back-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Space between button and top row */
-  }
-  
-  .back-button:hover {
-    transform: scale(1.1);
-    background-color: rgba(255, 255, 255, 1);
-  }
-  
-  .back-button:focus {
-    outline: none; /* Remove outline if focused */
-  }
-  
-  /* Top Row Layout (General Info + Empty Blocks) */
-  .top-row {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between; /* Distribute space between blocks */
-    width: 100%;
-  }
-  
-  /* General Info Block */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  max-width: 1300px; /* Make sure it's not too wide */
+  margin: 0 auto; /* Center the content */
+}
+
+/* Back Button - Positioned outside the blocks, to the left */
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Space between button and top row */
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.back-button:focus {
+  outline: none; /* Remove outline if focused */
+}
+
+/* Top Row Layout (General Info + Empty Blocks) */
+.top-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between; /* Distribute space between blocks */
+  width: 100%;
+}
+
+/* General Info Block */
+.general-info-block {
+  flex: 1 1 65%; /* This allows it to take up 65% of available space */
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.general-info-block .competitor-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.general-info-block .competitor-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.general-info-block .logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.general-info-block .competitor-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.general-info-block .release-sources h4,
+.general-info-block .last-release-note h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.general-info-block .source-icons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Source Icon Styling */
+.source-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; /* Adjust icon size */
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+  border-radius: 50%; /* Make it a circle */
+}
+
+.source-icon {
+  font-size: 20px; /* Smaller icon size */
+  color: #666666; /* Icon color */
+}
+
+/* Last Release Note */
+.general-info-block .last-release-note p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Empty Blocks */
+.empty-block {
+  flex: 1 1 17%; /* These blocks will take up 17% of the space */
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+/* Bottom Row - Full width block for Release Notes */
+.release-notes-block {
+  width: 97%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.release-notes-block h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
   .general-info-block {
-    flex: 1 1 65%; /* This allows it to take up 65% of available space */
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+      flex: 1 1 100%; /* Take full width on smaller screens */
   }
-  
-  .general-info-block .competitor-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .general-info-block .competitor-logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-  
-  .general-info-block .logo-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .general-info-block .competitor-name {
-    font-size: 18px;
-    font-weight: 600;
-  }
-  
-  .general-info-block .release-sources h4,
-  .general-info-block .last-release-note h4 {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 300;
-  }
-  
-  .general-info-block .source-icons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .general-info-block .source-icon {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-  }
-  
-  .general-info-block .last-release-note p {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  /* Empty Blocks */
+
   .empty-block {
-    flex: 1 1 17%; /* These blocks will take up 17% of the space */
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 15px;
-    padding: 20px;
+      flex: 1 1 100%; /* Take full width on smaller screens */
   }
-  
-  /* Bottom Row - Full width block for Release Notes */
-  .release-notes-block {
-    width: 97%;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 15px;
-    padding: 20px;
+
+  .top-row {
+      flex-direction: column; /* Stack the top row elements vertically */
   }
-  
-  .release-notes-block h3 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
-  }
-  
+}
