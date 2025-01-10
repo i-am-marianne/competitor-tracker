@@ -151,6 +151,14 @@
   color: black;
 }
 
+/* Highlight Styling */
+.highlight {
+    background-color: #E3CDFF; /* You can choose a different color */
+    font-weight: 300;
+    border-radius: 4px;
+    padding: 2px;
+  }
+
 /* Add media queries for responsiveness */
 @media (max-width: 768px) {
   .release-notes-block {

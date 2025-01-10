@@ -29,6 +29,14 @@ const CompetitorPage = () => {
     const options = { day: "numeric", month: "short", year: "numeric" };
     return new Date(dateString).toLocaleDateString("en-GB", options);
   };
+  const highlightKeywords = (text, keywords) => {
+    if (!keywords || keywords.length === 0) return text;
+    const regex = new RegExp(`\\b(${keywords.join("|")})\\b`, "gi");
+    return text.replace(
+      regex,
+      (match) => `<span class="highlight">${match}</span>`
+    );
+  };
 
   const addTagsToReleaseNote = (note) => {
     const tagsList = [];
@@ -42,12 +50,12 @@ const CompetitorPage = () => {
   };
 
   const filterReleaseNotesByTags = (notes) => {
-    if (selectedTags.includes('All')) {
+    if (selectedTags.includes("All")) {
       return notes;
     }
-    return notes.filter(note => {
+    return notes.filter((note) => {
       const noteTags = addTagsToReleaseNote(note);
-      return selectedTags.some(selectedTag => noteTags.includes(selectedTag));
+      return selectedTags.some((selectedTag) => noteTags.includes(selectedTag));
     });
   };
 
@@ -64,7 +72,9 @@ const CompetitorPage = () => {
   };
 
   // Process notes
-  const groupedReleaseNotes = groupReleaseNotesByDate(filterReleaseNotesByTags(releaseNotes));
+  const groupedReleaseNotes = groupReleaseNotesByDate(
+    filterReleaseNotesByTags(releaseNotes)
+  );
 
   // Effects
   useEffect(() => {
@@ -131,7 +141,8 @@ const CompetitorPage = () => {
             {releaseSources.length > 0 ? (
               <div className="source-icons">
                 {releaseSources.map((source, index) => {
-                  const icon = sourceIconMap[source.type] || sourceIconMap.other;
+                  const icon =
+                    sourceIconMap[source.type] || sourceIconMap.other;
                   return (
                     <div key={index} className="source-icon-container">
                       <a
@@ -146,7 +157,10 @@ const CompetitorPage = () => {
                             className="source-icon"
                           />
                         ) : (
-                          <FontAwesomeIcon icon={icon} className="source-icon" />
+                          <FontAwesomeIcon
+                            icon={icon}
+                            className="source-icon"
+                          />
                         )}
                       </a>
                     </div>
@@ -216,7 +230,14 @@ const CompetitorPage = () => {
                     return (
                       <div key={noteIndex} className="note-container">
                         <div className="note-header">
-                          <h5>{note.title}</h5>
+                          <h5
+                            dangerouslySetInnerHTML={{
+                              __html: highlightKeywords(
+                                note.title,
+                                selectedTags.flatMap((tag) => tags[tag] || [])
+                              ),
+                            }}
+                          ></h5>
                           {tagsForNote.length > 0 && (
                             <div className="release-tags">
                               {tagsForNote.map((tag, idx) => (
@@ -227,7 +248,14 @@ const CompetitorPage = () => {
                             </div>
                           )}
                         </div>
-                        <p>{note.details}</p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: highlightKeywords(
+                              note.details,
+                              selectedTags.flatMap((tag) => tags[tag] || [])
+                            ),
+                          }}
+                        ></p>
                       </div>
                     );
                   })}

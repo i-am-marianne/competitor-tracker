@@ -2,7 +2,7 @@
 
 const tags = {
     API: ["API", "Webhook", "Endpoint", "REST"],
-    Mobile: ["Mobile", "Android", "iOS", "App"],
+    Mobile: ["Mobile", "Android", "iOS"],
     AI: ["AI", "Artificial Intelligence", "Machine Learning", "Sentiment", "Transcription"],
     Integrations: ["CRM", "Integration", "Salesforce", "Hubspot", "Zendesk", "Pipedrive", "Gorgias"],
     "Call Routing": ["Call Distribution", "Routing", "Smartflow", "IVR Branch", "Transfer"],
