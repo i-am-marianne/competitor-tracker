@@ -81,7 +81,7 @@
 
 /* General Info Block */
 .general-info-block {
-  flex: 1 1 65%; /* This allows it to take up 65% of available space */
+  flex: 1 1 7%; /* This allows it to take up 65% of available space */
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 15px;
   padding: 20px;
@@ -146,7 +146,7 @@
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 15px;
   padding: 20px;
-  min-height: 300px; /* Ensure enough space for the chart */
+  min-height: 450px; /* Ensure enough space for the chart */
   display: flex;
   flex-direction: column;
 }
@@ -155,7 +155,7 @@
   margin: 0 0 15px 0;
   font-size: 14px;
   font-weight: 500;
-  color: #666;
+  color: #000;
 }
 
 .chart-container {

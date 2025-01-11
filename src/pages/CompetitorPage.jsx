@@ -6,7 +6,15 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import "../styles/CompetitorPage.css";
 import "../styles/ReleaseNotesTimeline.css";
 import tags from "../utils/tags";
-import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from "recharts";
 
 const sourceIconMap = {
   website: faGlobe,
@@ -54,27 +62,59 @@ const CompetitorPage = () => {
   const processUpdatesByMonth = (releaseNotes) => {
     if (!Array.isArray(releaseNotes) || releaseNotes.length === 0) {
       return [];
-    }  
+    }
 
     //Add line chart with release frequency
     const countsByMonth = releaseNotes.reduce((acc, note) => {
       const date = new Date(note.date);
-      const monthYear = `${date.toLocaleString('default', { month: 'short' })} ${date.getFullYear()}`;
+      const monthYear = `${date.toLocaleString("default", {
+        month: "short",
+      })} ${date.getFullYear()}`;
       acc[monthYear] = (acc[monthYear] || 0) + 1;
       return acc;
     }, {});
 
     return Object.entries(countsByMonth)
-    .sort((a, b) => {
-      const dateA = new Date(a[0]);
-      const dateB = new Date(b[0]);
-      return dateA - dateB;  // This will sort from oldest to newest
-    })
-    .map(([month, count]) => ({
-      month,
-      updates: count
-    }));
-};
+      .sort((a, b) => {
+        const dateA = new Date(a[0]);
+        const dateB = new Date(b[0]);
+        return dateA - dateB; // This will sort from oldest to newest
+      })
+      .map(([month, count]) => ({
+        month,
+        updates: count,
+      }));
+  };
+
+  //Add bar chart with tag count
+  const processUpdatesByTags = (releaseNotes) => {
+    if (!Array.isArray(releaseNotes) || releaseNotes.length === 0) {
+      return [];
+    }
+
+    // Count updates by tag
+    // Initialize counts for all available tags
+    const tagCounts = Object.keys(tags).reduce((acc, tag) => {
+      acc[tag] = 0;
+      return acc;
+    }, {});
+
+    // Count updates by tag
+    releaseNotes.forEach((note) => {
+      const noteTags = addTagsToReleaseNote(note);
+      noteTags.forEach((tag) => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      });
+    });
+
+    // Convert to array and sort by count
+    return Object.entries(tagCounts)
+      .map(([tag, count]) => ({
+        tag,
+        count,
+      }))
+      .sort((a, b) => a.tag.localeCompare(b.tag));
+  };
 
   const filterReleaseNotesByTags = (notes) => {
     if (selectedTags.includes("All")) {
@@ -228,10 +268,10 @@ const CompetitorPage = () => {
           <h4>Updates per month</h4>
           <div className="chart-container">
             <LineChart
-              width={300}
-              height={200}
+              width={400}
+              height={300}
               data={processUpdatesByMonth(releaseNotes)}
-              margin={{ top: 10, right: 30, left: 0, bottom: 45 }}
+              margin={{ top: 10, right: 15, left: 0, bottom: 45 }}
             >
               <XAxis
                 dataKey="month"
@@ -248,7 +288,7 @@ const CompetitorPage = () => {
                   value: "Updates",
                   angle: -90,
                   position: "insideLeft",
-                  style: { fontSize: 12, fill: "#666" },
+                  style: { fontSize: 12, fill: "#000" },
                 }}
               />
               <Tooltip
@@ -267,13 +307,45 @@ const CompetitorPage = () => {
                 dataKey="updates"
                 stroke="#333"
                 strokeWidth={2}
-                dot={{ fill: "white", stroke: "#333", strokeWidth: 2 }}
+                dot={{ fill: "black", stroke: "#333", strokeWidth: 2 }}
                 activeDot={{ r: 6, fill: "#333" }}
               />
             </LineChart>
           </div>
         </div>
-        <div className="empty-block"></div>
+        <div className="stats-block">
+          <h4>Updates by category</h4>
+          <div className="chart-container">
+            <BarChart
+              width={400}
+              height={400} // Increased height to fit all labels
+              data={processUpdatesByTags(releaseNotes)}
+              layout="vertical"
+              margin={{ top: 5, right: 15, left: 60, bottom: 5 }} // Adjusted left margin
+            >
+              <XAxis type="number" tick={{ fontSize: 11, fill: "#666" }} />
+              <YAxis
+                type="category"
+                dataKey="tag"
+                width={30} // Adjusted width
+                tick={{ fontSize: 11, fill: "#666" }}
+                interval={0} // Show all labels
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                  padding: "8px 12px",
+                }}
+                labelStyle={{ color: "#666", fontWeight: 500 }}
+                itemStyle={{ color: "#333" }}
+              />
+              <Bar dataKey="count" fill="#333" radius={[0, 4, 4, 0]} />
+            </BarChart>
+          </div>
+        </div>
       </div>
 
       <div className="release-notes-block">
