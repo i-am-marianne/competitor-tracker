@@ -3,7 +3,7 @@
 
 /* Bottom Row - Full width block for Release Notes */
 .release-notes-block {
-  width: 100%;
+  width: 97%;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 15px;
   padding: 20px;
@@ -157,6 +157,12 @@
     font-weight: 300;
     border-radius: 4px;
     padding: 2px;
+  }
+
+  .no-release-notes {
+    font-size: 14px;
+    color: #666;
+    font-weight: 300;
   }
 
 /* Add media queries for responsiveness */

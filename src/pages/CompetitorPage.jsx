@@ -131,24 +131,26 @@ const CompetitorPage = () => {
 
   return (
     <div className="competitor-page" style={{ paddingBottom: "60px" }}>
-      {/* Back Button */}
-      <div className="back-button" onClick={() => navigate("/")}>
-        <span className="material-symbols-outlined">arrow_back</span>
+      {/* Header with back button and basic info */}
+      <div className="page-header">
+        <div className="back-button" onClick={() => navigate("/")}>
+          <span className="material-symbols-outlined">arrow_back</span>
+        </div>
+        <div className="basic-info">
+          <div className="competitor-logo">
+            <img
+              src={competitor.logoUrl}
+              alt={`${competitor.name} logo`}
+              className="logo-image"
+            />
+          </div>
+          <div className="competitor-name">{competitor.name}</div>
+        </div>
       </div>
 
       {/* Top Row */}
       <div className="top-row">
         <div className="general-info-block">
-          <div className="competitor-info">
-            <div className="competitor-logo">
-              <img
-                src={competitor.logoUrl}
-                alt={`${competitor.name} logo`}
-                className="logo-image"
-              />
-            </div>
-            <div className="competitor-name">{competitor.name}</div>
-          </div>
           <div className="release-sources">
             <h4>Release sources</h4>
             {releaseSources.length > 0 ? (
@@ -277,7 +279,7 @@ const CompetitorPage = () => {
             ))}
           </div>
         ) : (
-          <p>No release notes available</p>
+          <p className="no-release-notes">No release notes available</p>
         )}
       </div>
     </div>

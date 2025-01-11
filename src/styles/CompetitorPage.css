@@ -10,6 +10,14 @@
   margin: 0 auto; /* Center the content */
 }
 
+/* Add a new container for header */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
 /* Back Button - Positioned outside the blocks, to the left */
 .back-button {
   display: flex;
@@ -21,7 +29,7 @@
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px; /* Space between button and top row */
+  margin-bottom: 0; /* Space between button and top row */
 }
 
 .back-button:hover {
@@ -31,6 +39,36 @@
 
 .back-button:focus {
   outline: none; /* Remove outline if focused */
+}
+
+/* Move competitor basic info styles out of general-info-block */
+.basic-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.basic-info .competitor-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.basic-info .logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.basic-info .competitor-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Remove competitor info from general-info-block */
+.general-info-block .competitor-info {
+  display: none;
 }
 
 /* Top Row Layout (General Info + Empty Blocks) */
@@ -52,34 +90,17 @@
   gap: 20px;
 }
 
-.general-info-block .competitor-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.general-info-block .competitor-logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.general-info-block .logo-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.general-info-block .competitor-name {
-  font-size: 18px;
-  font-weight: 600;
-}
-
 .general-info-block .release-sources h4,
 .general-info-block .last-release-note h4 {
   margin: 0;
   font-size: 14px;
+  font-weight: 300;
+}
+
+/* Style for 'No release sources available' and 'No release notes available' text */
+.no-release-text {
+  font-size: 14px;
+  color: #666;
   font-weight: 300;
 }
 
@@ -104,11 +125,6 @@
   color: #666666; /* Icon color */
 }
 
-.no-release-text {
-  font-size: 14px;
-  color: #666;
-  font-weight: 300;
-}
 
 /* Last Release Note */
 .general-info-block .last-release-note p {
