@@ -4,7 +4,7 @@
 .competitor-page {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 5px;
   gap: 20px;
   max-width: 1300px; /* Make sure it's not too wide */
   margin: 0 auto; /* Center the content */
@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 /* Back Button - Positioned outside the blocks, to the left */
@@ -134,7 +134,7 @@
 
 /* Empty Blocks */
 .empty-block {
-  flex: 1 1 17%; /* These blocks will take up 17% of the space */
+  flex: 1 1 30%; /* These blocks will take up 17% of the space */
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 15px;
   padding: 20px;

@@ -299,8 +299,8 @@ const CompetitorPage = () => {
                   boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                   padding: "8px 12px",
                 }}
-                labelStyle={{ color: "#666", fontWeight: 500 }}
-                itemStyle={{ color: "#333" }}
+                labelStyle={{ color: "#666", fontWeight: 700, fontSize: 11 }}
+                itemStyle={{ color: "#333", fontSize: 11}}
               />
               <Line
                 type="monotone"
@@ -339,8 +339,8 @@ const CompetitorPage = () => {
                   boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                   padding: "8px 12px",
                 }}
-                labelStyle={{ color: "#666", fontWeight: 500 }}
-                itemStyle={{ color: "#333" }}
+                labelStyle={{ color: "#666", fontWeight: 700, fontSize: 11 }}
+                itemStyle={{ color: "#333", fontSize: 11 }}
               />
               <Bar dataKey="count" fill="#333" radius={[0, 4, 4, 0]} />
             </BarChart>
