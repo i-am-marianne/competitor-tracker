@@ -60,6 +60,10 @@ const CompetitorPage = () => {
   };
 
   const groupReleaseNotesByDate = (releaseNotes) => {
+    if (!Array.isArray(releaseNotes) || releaseNotes.length === 0) {
+      return {};
+    }
+    
     const groupedNotes = releaseNotes.reduce((groups, note) => {
       const date = formatDate(note.date);
       if (!groups[date]) {
@@ -70,6 +74,7 @@ const CompetitorPage = () => {
     }, {});
     return groupedNotes;
   };
+  
 
   // Process notes
   const groupedReleaseNotes = groupReleaseNotesByDate(
@@ -85,32 +90,40 @@ const CompetitorPage = () => {
         );
         const competitorData = await competitorResponse.json();
         setCompetitor(competitorData);
-
+  
         const releaseSourcesResponse = await fetch(
           `http://localhost:3000/api/competitors/${competitorData.id}/sources`
         );
         const releaseSourcesData = await releaseSourcesResponse.json();
         setReleaseSources(releaseSourcesData);
-
+  
         const releaseNotesResponse = await fetch(
           `http://localhost:3000/api/competitors/${competitorData.id}/release-notes`
         );
-        const releaseNotesData = await releaseNotesResponse.json();
-        setReleaseNotes(releaseNotesData);
-
-        if (releaseNotesData && releaseNotesData.length > 0) {
-          const latestRelease = releaseNotesData.reduce((latest, note) => {
-            return new Date(note.date) > new Date(latest.date) ? note : latest;
-          });
-          setLatestReleaseNoteDate(latestRelease.date);
+        if (releaseNotesResponse.ok) {
+          const releaseNotesData = await releaseNotesResponse.json();
+          setReleaseNotes(releaseNotesData || []); // Ensure we always have an array
+  
+          // Move this inside the if block since we only want to process if we have data
+          if (releaseNotesData && releaseNotesData.length > 0) {
+            const latestRelease = releaseNotesData.reduce((latest, note) => {
+              return new Date(note.date) > new Date(latest.date) ? note : latest;
+            });
+            setLatestReleaseNoteDate(latestRelease.date);
+          } else {
+            setLatestReleaseNoteDate(null);
+          }
         } else {
+          setReleaseNotes([]); // Set empty array if no release notes found
           setLatestReleaseNoteDate(null);
         }
       } catch (error) {
         console.error("Error fetching competitor details:", error);
+        setReleaseNotes([]);
+        setLatestReleaseNoteDate(null);
       }
     };
-
+  
     fetchCompetitorDetails();
   }, [id]);
 

@@ -104,6 +104,12 @@
   color: #666666; /* Icon color */
 }
 
+.no-release-text {
+  font-size: 14px;
+  color: #666;
+  font-weight: 300;
+}
+
 /* Last Release Note */
 .general-info-block .last-release-note p {
   font-size: 14px;
