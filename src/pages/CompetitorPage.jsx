@@ -6,6 +6,7 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import "../styles/CompetitorPage.css";
 import "../styles/ReleaseNotesTimeline.css";
 import tags from "../utils/tags";
+import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
 const sourceIconMap = {
   website: faGlobe,
@@ -49,6 +50,32 @@ const CompetitorPage = () => {
     return tagsList;
   };
 
+  // Add the new function here
+  const processUpdatesByMonth = (releaseNotes) => {
+    if (!Array.isArray(releaseNotes) || releaseNotes.length === 0) {
+      return [];
+    }  
+
+    //Add line chart with release frequency
+    const countsByMonth = releaseNotes.reduce((acc, note) => {
+      const date = new Date(note.date);
+      const monthYear = `${date.toLocaleString('default', { month: 'short' })} ${date.getFullYear()}`;
+      acc[monthYear] = (acc[monthYear] || 0) + 1;
+      return acc;
+    }, {});
+
+    return Object.entries(countsByMonth)
+    .sort((a, b) => {
+      const dateA = new Date(a[0]);
+      const dateB = new Date(b[0]);
+      return dateA - dateB;  // This will sort from oldest to newest
+    })
+    .map(([month, count]) => ({
+      month,
+      updates: count
+    }));
+};
+
   const filterReleaseNotesByTags = (notes) => {
     if (selectedTags.includes("All")) {
       return notes;
@@ -63,7 +90,7 @@ const CompetitorPage = () => {
     if (!Array.isArray(releaseNotes) || releaseNotes.length === 0) {
       return {};
     }
-    
+
     const groupedNotes = releaseNotes.reduce((groups, note) => {
       const date = formatDate(note.date);
       if (!groups[date]) {
@@ -74,7 +101,6 @@ const CompetitorPage = () => {
     }, {});
     return groupedNotes;
   };
-  
 
   // Process notes
   const groupedReleaseNotes = groupReleaseNotesByDate(
@@ -90,24 +116,26 @@ const CompetitorPage = () => {
         );
         const competitorData = await competitorResponse.json();
         setCompetitor(competitorData);
-  
+
         const releaseSourcesResponse = await fetch(
           `http://localhost:3000/api/competitors/${competitorData.id}/sources`
         );
         const releaseSourcesData = await releaseSourcesResponse.json();
         setReleaseSources(releaseSourcesData);
-  
+
         const releaseNotesResponse = await fetch(
           `http://localhost:3000/api/competitors/${competitorData.id}/release-notes`
         );
         if (releaseNotesResponse.ok) {
           const releaseNotesData = await releaseNotesResponse.json();
           setReleaseNotes(releaseNotesData || []); // Ensure we always have an array
-  
+
           // Move this inside the if block since we only want to process if we have data
           if (releaseNotesData && releaseNotesData.length > 0) {
             const latestRelease = releaseNotesData.reduce((latest, note) => {
-              return new Date(note.date) > new Date(latest.date) ? note : latest;
+              return new Date(note.date) > new Date(latest.date)
+                ? note
+                : latest;
             });
             setLatestReleaseNoteDate(latestRelease.date);
           } else {
@@ -123,7 +151,7 @@ const CompetitorPage = () => {
         setLatestReleaseNoteDate(null);
       }
     };
-  
+
     fetchCompetitorDetails();
   }, [id]);
 
@@ -196,7 +224,55 @@ const CompetitorPage = () => {
           </div>
         </div>
 
-        <div className="empty-block"></div>
+        <div className="stats-block">
+          <h4>Updates per month</h4>
+          <div className="chart-container">
+            <LineChart
+              width={300}
+              height={200}
+              data={processUpdatesByMonth(releaseNotes)}
+              margin={{ top: 10, right: 30, left: 0, bottom: 45 }}
+            >
+              <XAxis
+                dataKey="month"
+                angle={-45}
+                textAnchor="end"
+                height={60}
+                tick={{ fontSize: 11, fill: "#666" }}
+                tickMargin={10}
+              />
+              <YAxis
+                tick={{ fontSize: 11, fill: "#666" }}
+                allowDecimals={false}
+                label={{
+                  value: "Updates",
+                  angle: -90,
+                  position: "insideLeft",
+                  style: { fontSize: 12, fill: "#666" },
+                }}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                  padding: "8px 12px",
+                }}
+                labelStyle={{ color: "#666", fontWeight: 500 }}
+                itemStyle={{ color: "#333" }}
+              />
+              <Line
+                type="monotone"
+                dataKey="updates"
+                stroke="#333"
+                strokeWidth={2}
+                dot={{ fill: "white", stroke: "#333", strokeWidth: 2 }}
+                activeDot={{ r: 6, fill: "#333" }}
+              />
+            </LineChart>
+          </div>
+        </div>
         <div className="empty-block"></div>
       </div>
 

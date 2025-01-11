@@ -140,6 +140,32 @@
   padding: 20px;
 }
 
+/* Stats Block with Chart */
+.stats-block {
+  flex: 1 1 17%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+  min-height: 300px; /* Ensure enough space for the chart */
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-block h4 {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.chart-container {
+  width: 100%;
+  height: calc(100% - 30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Add media queries for responsiveness */
 @media (max-width: 768px) {
   .general-info-block {
@@ -152,5 +178,10 @@
 
   .top-row {
     flex-direction: column; /* Stack the top row elements vertically */
+  }
+
+  .stats-block {
+    flex: 1 1 100%;
+    min-height: 250px;
   }
 }
