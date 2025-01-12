@@ -1,0 +1,200 @@
+[
+  {
+    "title": "Dialpad Release Notes 23.12.19",
+    "date": "19 Dec 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-231219",
+    "sections": [
+      {
+        "type": "new",
+        "title": "New",
+        "items": [
+          {
+            "title": "Ai Agent Assist",
+            "details": "We’re thrilled to announce Ai Agent Assist, a next-generation virtual assistant for contact center agents that puts knowledge at their fingertips.\nHarnessing the power of Dialpad's advanced semantic search capabilities and Generative AI, Ai Agent Assist delivers on-demand, natural answers to agent questions so they can offer faster, more effective service. This translates into shorter resolution times, more productive agents, and improved customer satisfaction.\nThis is the 9th offering in Dialpad’s 12 Months of Ai product series and signup for this feature is now open! (https://www.dialpad.com/ai-labs/ai-agent-assist-waitlist/)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Dialpad Release Notes 23.10.02",
+    "date": "02 Oct 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-231002",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.07.31",
+    "date": "31 Jul 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-jul-31-23",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.11.21",
+    "date": "21 Nov 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-231121",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.05.15",
+    "date": "15 May 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-may-15-23",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.05.09",
+    "date": "09 May 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-may-9-23",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.10.20",
+    "date": "20 Oct 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-231020",
+    "sections": [
+      {
+        "type": "new",
+        "title": "New",
+        "items": [
+          {
+            "title": "Media Tab for IVR Workflows",
+            "details": "We've added a Media tab for IVR Workflows, letting you easily see all media (mp3 recordings) that have been uploaded or recorded.\nFrom the Media tab (https://help.dialpad.com/v1/docs/manage-ivr-media), you can not only delete and copy the file, but also see which audio files are being used where, when they were uploaded and updated and how many IVR workflows they are applied to."
+          },
+          {
+            "title": "Disable call recordings on warm transfers",
+            "details": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Dialpad Release Notes 23.10.13",
+    "date": "13 Oct 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-231013",
+    "sections": [
+      {
+        "type": "new",
+        "title": "New",
+        "items": [
+          {
+            "title": "WebHID for Dialpad app",
+            "details": "We now have the WebHID integration (https://help.dialpad.com/docs/using-devices-with-webhid) available for the Dialpad desktop app! Easily add headsets right from your Hardware Settings menu."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Dialpad Release Notes 23.09.26",
+    "date": "26 Sep 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230926",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.09.20",
+    "date": "20 Sep 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230920",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.09.12",
+    "date": "12 Sep 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230912",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.10.09",
+    "date": "09 Oct 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-231009",
+    "sections": [
+      {
+        "type": "improvements",
+        "title": "Improvements",
+        "items": [
+          {
+            "title": "Ai Scorecards",
+            "details": "Ai Scorecards are now available for all Scorecard users (Ai Scorecards are an add-on). If you previously purchased QA Scorecards, no action is required, you will see the Ai functionality appear in the scorecards section.\nWhen Ai recognizes an answer, it will suggest the answer and let you confirm by taking you directly to the section of the call and transcript where the answer was captured."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Dialpad Release Notes 23.08.08",
+    "date": "08 Aug 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-23088",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.07.11",
+    "date": "11 Jul 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230711",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.06.21",
+    "date": "21 Jun 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230621",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.06.06",
+    "date": "06 Jun 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230606",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.05.23",
+    "date": "23 May 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230523",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.04.16",
+    "date": "16 Apr 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230416",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.04.06",
+    "date": "06 Apr 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230406",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.03.17",
+    "date": "17 Mar 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230317",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.03.04",
+    "date": "04 Mar 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230304",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.02.15",
+    "date": "15 Feb 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230215",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.01.27",
+    "date": "27 Jan 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230127",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.01.20",
+    "date": "20 Jan 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230120",
+    "sections": []
+  },
+  {
+    "title": "Dialpad Release Notes 23.01.06",
+    "date": "06 Jan 2023",
+    "link": "https://help.dialpad.com/docs/dialpad-release-notes-230106",
+    "sections": []
+  }
+]

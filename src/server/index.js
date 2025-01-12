@@ -97,7 +97,7 @@ app.post('/api/run-update', async (req, res) => {
       console.log(`Scraper Output: ${stdout}`);
 
       // Execute database insertion
-      exec('node scripts/insertReleaseNotes.js', (error, stdout, stderr) => {
+      exec('node scripts/insertAircallReleaseNotes.js', (error, stdout, stderr) => {
         if (error) {
           console.error(`Insertion error: ${error.message}`);
           return res.status(500).json({ error: `Insertion failed: ${stderr || error.message}` });
